@@ -10,9 +10,15 @@ public partial class Alerta
 
     public DateTime Fecha { get; set; }
 
-    public string? Comentario { get; set; }
+    public string? TipoAlerta { get; set; }
 
-    public float? Puntuacion { get; set; }
+    public string? Descripcion { get; set; }
+
+    public string? Estado { get; set; }
+
+    public DateTime? FechaResolucion { get; set; }
+
+    public string? Gravedad { get; set; }
 
     public virtual Terrario IdterrarioNavigation { get; set; } = null!;
 

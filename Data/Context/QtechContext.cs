@@ -68,14 +68,24 @@ public partial class QtechContext : DbContext
                 .HasColumnName("id");
             entity.Property(e => e.Idusuario).HasColumnName("idusuario");
             entity.Property(e => e.Idterrario).HasColumnName("idterrario");
-            entity.Property(e => e.Comentario)
+            entity.Property(e => e.TipoAlerta)
                 .HasMaxLength(45)
-                .HasColumnName("comentario");
+                .HasColumnName("tipo_alerta");
             entity.Property(e => e.Fecha)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha");
-            entity.Property(e => e.Puntuacion).HasColumnName("puntuacion");
-
+            entity.Property(e => e.Descripcion)
+                .HasMaxLength(100)
+                .HasColumnName("descripcion");
+            entity.Property(e => e.Estado)
+                .HasMaxLength(45)
+                .HasColumnName("estado");
+            entity.Property(e => e.FechaResolucion)
+                .HasColumnType("datetime")
+                .HasColumnName("fecha_resolucion");
+            entity.Property(e => e.Gravedad)
+                .HasMaxLength(45)
+                .HasColumnName("gravedad");
             entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Alerta)
                 .HasForeignKey(d => d.Idterrario)
                 .HasConstraintName("fk_alerta_terrario");
@@ -416,9 +426,6 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.Ecosistema)
                 .HasMaxLength(150)
                 .HasColumnName("ecosistema");
-            entity.Property(e => e.Etiquetas)
-                .HasMaxLength(75)
-                .HasColumnName("etiquetas");
             entity.Property(e => e.FechaCreacion)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_creacion");

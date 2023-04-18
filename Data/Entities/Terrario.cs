@@ -33,8 +33,6 @@ public partial class Terrario
 
     public float? PuntuacionMedia { get; set; }
 
-    public string? Etiquetas { get; set; }
-
     public float? TemperaturaMinima { get; set; }
 
     public float? TemperaturaMaxima { get; set; }

@@ -38,6 +38,19 @@ namespace AutoTerraAPI.Controllers
             return Ok(UsuarioVM);
         }
 
+        [HttpPost("login")]
+        public async Task<IActionResult> GetByLogin([FromBody] Dictionary<string, string> credentials)
+        {
+            string param = credentials["param"];
+            string password = credentials["password"];
+
+            UsuarioDTO usuarioDTO = await _usuarioService.GetByLogin(param, password);
+            UsuarioVM usuarioVM = _mapper.Map<UsuarioVM>(usuarioDTO);
+
+            return Ok(usuarioVM);
+        }
+
+
         [HttpPost("usuarios")]
         public async Task<IActionResult> Create(UsuarioVM UsuarioVM)
         {

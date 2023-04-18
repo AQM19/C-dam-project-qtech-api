@@ -57,8 +57,11 @@ namespace Business.Services
             alerta.Idusuario = alertaDTO.Idusuario;
             alerta.Idterrario = alertaDTO.Idterrario;
             alerta.Fecha = alertaDTO.Fecha;
-            alerta.Comentario = alertaDTO.Comentario;
-            alerta.Puntuacion = alertaDTO.Puntuacion;
+            alerta.TipoAlerta = alertaDTO.TipoAlerta;
+            alerta.Descripcion = alertaDTO.Descripcion;
+            alerta.Estado = alertaDTO.Estado;
+            alerta.FechaResolucion = alertaDTO.FechaResolucion;
+            alerta.Gravedad = alertaDTO.Gravedad;
 
             _context.SaveChanges();
         }

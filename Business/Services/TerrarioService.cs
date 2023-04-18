@@ -72,7 +72,6 @@ namespace Business.Services
             Terrario.FechaUltimaModificacion = TerrarioDTO.FechaUltimaModificacion;
             Terrario.Foto = TerrarioDTO.Foto;
             Terrario.PuntuacionMedia = TerrarioDTO.PuntuacionMedia;
-            Terrario.Etiquetas = TerrarioDTO.Etiquetas;
             Terrario.TemperaturaMaxima = TerrarioDTO.TemperaturaMaxima;
             Terrario.TemperaturaMedia = TerrarioDTO.TemperaturaMedia;
             Terrario.TemperaturaMinima = TerrarioDTO.TemperaturaMinima;
