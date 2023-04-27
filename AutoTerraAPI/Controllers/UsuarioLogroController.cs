@@ -31,10 +31,10 @@ namespace AutoTerraAPI.Controllers
         }
 
         [HttpGet("usuarioLogros/{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(long id)
         {
-            UsuarioLogroDTO UsuarioLogroDTO = await _usuarioLogroService.GetById(id);
-            UsuarioLogroVM UsuarioLogroVM = _mapper.Map<UsuarioLogroVM>(UsuarioLogroDTO);
+            ICollection<UsuarioLogroDTO> UsuarioLogroDTO = await _usuarioLogroService.GetById(id);
+            ICollection<UsuarioLogroVM> UsuarioLogroVM = _mapper.Map<ICollection<UsuarioLogroVM>>(UsuarioLogroDTO);
 
             return Ok(UsuarioLogroVM);
         }
@@ -49,7 +49,7 @@ namespace AutoTerraAPI.Controllers
         }
 
         [HttpPut("usuarioLogros/{id}")]
-        public async Task<IActionResult> Update(int id, UsuarioLogroVM UsuarioLogroVM)
+        public async Task<IActionResult> Update(long id, UsuarioLogroVM UsuarioLogroVM)
         {
             UsuarioLogroDTO UsuarioLogroDTO = _mapper.Map<UsuarioLogroDTO>(UsuarioLogroVM);
 
@@ -58,7 +58,7 @@ namespace AutoTerraAPI.Controllers
         }
 
         [HttpDelete("usuarioLogros/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
             _usuarioLogroService.Delete(id);
             return Ok();

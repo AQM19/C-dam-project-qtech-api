@@ -55,8 +55,6 @@ public partial class Terrario
 
     public int? HorasLuzHiber { get; set; }
 
-    public virtual ICollection<Alerta> Alerta { get; } = new List<Alerta>();
-
     public virtual ICollection<Dato> Datos { get; } = new List<Dato>();
 
     public virtual ICollection<EspecieTerrario> EspecieTerrarios { get; } = new List<EspecieTerrario>();

@@ -39,9 +39,7 @@ public partial class Especie
 
     public int? HorasLuzHib { get; set; }
 
-    public virtual ICollection<Animal> Animales { get; } = new List<Animal>();
+    public string Tipo { get; set; }
 
     public virtual ICollection<EspecieTerrario> EspecieTerrarios { get; } = new List<EspecieTerrario>();
-
-    public virtual ICollection<Planta> Planta { get; } = new List<Planta>();
 }

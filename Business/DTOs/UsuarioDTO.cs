@@ -10,9 +10,9 @@ public partial class UsuarioDTO
 
     public string Contrasena { get; set; } = null!;
 
-    public string Nombre { get; set; } = null!;
+    public string? Nombre { get; set; } = null!;
 
-    public string Apellido1 { get; set; } = null!;
+    public string? Apellido1 { get; set; } = null!;
 
     public string? Apellido2 { get; set; }
 

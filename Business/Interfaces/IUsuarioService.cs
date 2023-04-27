@@ -5,10 +5,14 @@ namespace Business.Interfaces
     public interface IUsuarioService
     {
         Task<ICollection<UsuarioDTO>> GetAll();
-        Task<UsuarioDTO> GetById(int id);
-        Task<UsuarioDTO> GetByLogin(string param, string password);
+        Task<UsuarioDTO> GetById(long id);
         void Create(UsuarioDTO usuarioDTO);
-        void Update(int id, UsuarioDTO usuarioDTO);
-        void Delete(int id);
+        void Update(long id, UsuarioDTO usuarioDTO);
+        void Delete(long id);
+
+        // Custom
+        Task<UsuarioDTO> GetByLogin(string param, string password);
+        Task<ICollection<UsuarioDTO>> GetSocial(long id);
+        Task<bool> CheckUser(string patam);
     }
 }

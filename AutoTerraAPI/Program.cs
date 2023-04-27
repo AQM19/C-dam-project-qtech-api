@@ -23,18 +23,14 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MapperDTO).Assembly, typeof(MapperVM).Assembly);
 
-builder.Services.AddScoped<IAlertaService, AlertaService>();
-builder.Services.AddScoped<IAnimalService, AnimalService>();
 builder.Services.AddScoped<IConfiguracionUsuarioService, ConfiguracionUsuarioService>();
 builder.Services.AddScoped<IDatoService, DatoService>();
 builder.Services.AddScoped<IEspecieService, EspecieService>();
 builder.Services.AddScoped<IEspecieTerrarioService, EspecieTerrarioService>();
 builder.Services.AddScoped<IEstadisticaService, EstadisticaService>();
-builder.Services.AddScoped<IHistoriaCambioService, HistorialCambioService>();
 builder.Services.AddScoped<ILogroService, LogroService>();
 builder.Services.AddScoped<INotificacionService, NotificacionService>();
 builder.Services.AddScoped<IObservacionService, ObservacionService>();
-builder.Services.AddScoped<IPlantaService, PlantaService>();
 builder.Services.AddScoped<ITareaService, TareaService>();
 builder.Services.AddScoped<ITerrarioService, TerrarioService>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();

@@ -3,12 +3,8 @@ using Business.DTOs;
 using Business.Interfaces;
 using Data.Context;
 using Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Services
 {
@@ -31,7 +27,7 @@ namespace Business.Services
             _context.SaveChanges();
         }
 
-        public async void Delete(int id)
+        public async void Delete(long id)
         {
             Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
             Usuario.Borrado = 1;
@@ -41,15 +37,23 @@ namespace Business.Services
 
         public async Task<ICollection<UsuarioDTO>> GetAll()
         {
-            List<Usuario> Usuarios = _context.Usuarios.ToList();
+            ICollection<Usuario> Usuarios = _context.Usuarios.Where(x => x.Borrado == 0).ToList();
             ICollection<UsuarioDTO> alertaDTOs = _mapper.Map<ICollection<UsuarioDTO>>(Usuarios);
 
             return alertaDTOs;
         }
 
-        public async Task<UsuarioDTO> GetById(int id)
+        public async Task<ICollection<UsuarioDTO>> GetSocial(long id)
         {
-            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id);
+            ICollection<Usuario> social = _context.Usuarios.Where(x => x.Id != id && x.Borrado == 0).ToList();
+            ICollection<UsuarioDTO> socialDTO = _mapper.Map<ICollection<UsuarioDTO>>(social);
+
+            return socialDTO;
+        }
+
+        public async Task<UsuarioDTO> GetById(long id)
+        {
+            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
             UsuarioDTO UsuarioDTO = _mapper.Map<UsuarioDTO>(Usuario);
 
             return UsuarioDTO;
@@ -57,7 +61,7 @@ namespace Business.Services
 
         public async Task<UsuarioDTO> GetByLogin(string param, string password)
         {
-            Usuario usuario = _context.Usuarios.FirstOrDefault(x => x.NombreUsuario == param || x.Email == param);
+            Usuario usuario = _context.Usuarios.FirstOrDefault(x => (x.NombreUsuario == param || x.Email == param) && x.Borrado == 0);
 
             if (usuario == null) return null;
 
@@ -80,9 +84,9 @@ namespace Business.Services
             return null;
         }
 
-        public async void Update(int id, UsuarioDTO UsuarioDTO)
+        public async void Update(long id, UsuarioDTO UsuarioDTO)
         {
-            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id);
+            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
 
             Usuario.Id = UsuarioDTO.Id;
             Usuario.Nombre = UsuarioDTO.Nombre;
@@ -98,6 +102,13 @@ namespace Business.Services
             Usuario.Perfil = UsuarioDTO.Perfil;
 
             _context.SaveChanges();
+        }
+
+        public async Task<bool> CheckUser(string param)
+        {
+            Usuario usuario = _context.Usuarios.FirstOrDefault(x => (x.NombreUsuario == param || x.Email == param) && x.Borrado == 0);
+
+            return usuario == null ? true : false;
         }
     }
 }

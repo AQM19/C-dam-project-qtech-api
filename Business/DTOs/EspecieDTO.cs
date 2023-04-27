@@ -37,4 +37,6 @@ public partial class EspecieDTO
     public int HorasLuz { get; set; }
 
     public int? HorasLuzHib { get; set; }
+
+    public string Tipo { get; set; }
 }

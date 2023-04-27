@@ -14,10 +14,6 @@ public partial class QtechContext : DbContext
     {
     }
 
-    public virtual DbSet<Alerta> Alertas { get; set; }
-
-    public virtual DbSet<Animal> Animales { get; set; }
-
     public virtual DbSet<ConfiguracionUsuario> ConfiguracionUsuarios { get; set; }
 
     public virtual DbSet<Dato> Datos { get; set; }
@@ -28,15 +24,11 @@ public partial class QtechContext : DbContext
 
     public virtual DbSet<Estadistica> Estadisticas { get; set; }
 
-    public virtual DbSet<HistorialCambio> HistorialCambios { get; set; }
-
     public virtual DbSet<Logro> Logros { get; set; }
 
     public virtual DbSet<Notificacion> Notificaciones { get; set; }
 
     public virtual DbSet<Observacion> Observaciones { get; set; }
-
-    public virtual DbSet<Planta> Plantas { get; set; }
 
     public virtual DbSet<Tarea> Tareas { get; set; }
 
@@ -53,75 +45,6 @@ public partial class QtechContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Alerta>(entity =>
-        {
-            entity.HasKey(e => new { e.Id, e.Idusuario, e.Idterrario }).HasName("PRIMARY");
-
-            entity.ToTable("alerta");
-
-            entity.HasIndex(e => e.Idterrario, "fk_alerta_terrario_idx");
-
-            entity.HasIndex(e => e.Idusuario, "fk_alerta_usuario_idx");
-
-            entity.Property(e => e.Id)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("id");
-            entity.Property(e => e.Idusuario).HasColumnName("idusuario");
-            entity.Property(e => e.Idterrario).HasColumnName("idterrario");
-            entity.Property(e => e.TipoAlerta)
-                .HasMaxLength(45)
-                .HasColumnName("tipo_alerta");
-            entity.Property(e => e.Fecha)
-                .HasColumnType("datetime")
-                .HasColumnName("fecha");
-            entity.Property(e => e.Descripcion)
-                .HasMaxLength(100)
-                .HasColumnName("descripcion");
-            entity.Property(e => e.Estado)
-                .HasMaxLength(45)
-                .HasColumnName("estado");
-            entity.Property(e => e.FechaResolucion)
-                .HasColumnType("datetime")
-                .HasColumnName("fecha_resolucion");
-            entity.Property(e => e.Gravedad)
-                .HasMaxLength(45)
-                .HasColumnName("gravedad");
-            entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Alerta)
-                .HasForeignKey(d => d.Idterrario)
-                .HasConstraintName("fk_alerta_terrario");
-
-            entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Alerta)
-                .HasForeignKey(d => d.Idusuario)
-                .HasConstraintName("fk_alerta_usuario");
-        });
-
-        modelBuilder.Entity<Animal>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("animales");
-
-            entity.HasIndex(e => e.Idespecie, "fk_animal_especie_idx");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Alimentacion)
-                .HasMaxLength(45)
-                .HasColumnName("alimentacion");
-            entity.Property(e => e.Comportamiento)
-                .HasMaxLength(45)
-                .HasColumnName("comportamiento");
-            entity.Property(e => e.Idespecie).HasColumnName("idespecie");
-            entity.Property(e => e.Proveniencia)
-                .HasMaxLength(45)
-                .HasColumnName("proveniencia");
-            entity.Property(e => e.Reproduccion)
-                .HasMaxLength(45)
-                .HasColumnName("reproduccion");
-
-            entity.HasOne(d => d.IdespecieNavigation).WithMany(p => p.Animales)
-                .HasForeignKey(d => d.Idespecie)
-                .HasConstraintName("fk_animal_especie");
-        });
 
         modelBuilder.Entity<ConfiguracionUsuario>(entity =>
         {
@@ -223,6 +146,9 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.TemperaturaHibMinima).HasColumnName("temperatura_hib_minima");
             entity.Property(e => e.TemperaturaMaxima).HasColumnName("temperatura_maxima");
             entity.Property(e => e.TemperaturaMinima).HasColumnName("temperatura_minima");
+            entity.Property(e => e.Tipo)
+                .HasMaxLength(45)
+                .HasColumnName("Tipo");
         });
 
         modelBuilder.Entity<Estadistica>(entity =>
@@ -241,40 +167,13 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.NumeroIniciosSesion).HasColumnName("numero_inicios_sesion");
             entity.Property(e => e.NumeroLogros).HasColumnName("numero_logros");
             entity.Property(e => e.NumeroPlantas).HasColumnName("numero_plantas");
+            entity.Property(e => e.NumeroHongos).HasColumnName("numero_hongos");
             entity.Property(e => e.NumeroTerrarios).HasColumnName("numero_terrarios");
             entity.Property(e => e.PuntuacionMediaTerrarios).HasColumnName("puntuacion_media_terrarios");
 
             entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Estadisticas)
                 .HasForeignKey(d => d.Idusuario)
                 .HasConstraintName("fk_estadistica_usuario");
-        });
-
-        modelBuilder.Entity<HistorialCambio>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("historial_cambios");
-
-            entity.HasIndex(e => e.Idusuario, "fk_historial_usuario_idx");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Accion)
-                .HasMaxLength(50)
-                .HasColumnName("accion");
-            entity.Property(e => e.Detalles)
-                .HasMaxLength(100)
-                .HasColumnName("detalles");
-            entity.Property(e => e.Idusuario).HasColumnName("idusuario");
-            entity.Property(e => e.NombreTabla)
-                .HasMaxLength(50)
-                .HasColumnName("nombre_tabla");
-            entity.Property(e => e.Observaciones)
-                .HasMaxLength(100)
-                .HasColumnName("observaciones");
-
-            entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.HistorialCambios)
-                .HasForeignKey(d => d.Idusuario)
-                .HasConstraintName("fk_historial_usuario");
         });
 
         modelBuilder.Entity<Logro>(entity =>
@@ -341,39 +240,6 @@ public partial class QtechContext : DbContext
             entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Observaciones)
                 .HasForeignKey(d => d.Idterrario)
                 .HasConstraintName("fk_observaciones");
-        });
-
-        modelBuilder.Entity<Planta>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("plantas");
-
-            entity.HasIndex(e => e.Idespecie, "fl_planta_especie_idx");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Altura).HasColumnName("altura");
-            entity.Property(e => e.Ancho).HasColumnName("ancho");
-            entity.Property(e => e.Floracion)
-                .HasMaxLength(50)
-                .HasColumnName("floracion");
-            entity.Property(e => e.Fructificacion)
-                .HasMaxLength(50)
-                .HasColumnName("fructificacion");
-            entity.Property(e => e.Idespecie).HasColumnName("idespecie");
-            entity.Property(e => e.Propagacion)
-                .HasMaxLength(50)
-                .HasColumnName("propagacion");
-            entity.Property(e => e.Suelo)
-                .HasMaxLength(50)
-                .HasColumnName("suelo");
-            entity.Property(e => e.TipoPlanta)
-                .HasMaxLength(50)
-                .HasColumnName("tipo_planta");
-
-            entity.HasOne(d => d.IdespecieNavigation).WithMany(p => p.Planta)
-                .HasForeignKey(d => d.Idespecie)
-                .HasConstraintName("fl_planta_especie");
         });
 
         modelBuilder.Entity<Tarea>(entity =>

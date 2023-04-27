@@ -20,6 +20,8 @@ public partial class EstadisticaDTO
 
     public int NumeroPlantas { get; set; }
 
+    public int NumeroHongos { get; set; }
+
     public int NumeroAmigos { get; set; }
 
     public int NumeroLogros { get; set; }

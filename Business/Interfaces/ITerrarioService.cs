@@ -5,9 +5,9 @@ namespace Business.Interfaces
     public interface ITerrarioService
     {
         Task<ICollection<TerrarioDTO>> GetAll();
-        Task<TerrarioDTO> GetById(int id);
+        Task<TerrarioDTO> GetById(long id);
         void Create(TerrarioDTO terrarioDTO);
-        void Update(int id, TerrarioDTO terrarioDTO);
-        void Delete(int id);
+        void Update(long id, TerrarioDTO terrarioDTO);
+        void Delete(long id);
     }
 }

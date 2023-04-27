@@ -29,8 +29,23 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
+        [HttpGet("usuarios/social/{id}")]
+        public async Task<IActionResult> GetSocial(long id)
+        {
+            ICollection<UsuarioDTO> userDTOs = await _usuarioService.GetSocial(id);
+            ICollection<UsuarioVM> userVMs = _mapper.Map<ICollection<UsuarioVM>>(userDTOs);
+
+            return Ok(userVMs);
+        }
+
+        [HttpGet("usuarios/check/{param}")]
+        public async Task<IActionResult> CheckUser(string param)
+        {
+            return Ok(await _usuarioService.CheckUser(param));
+        }
+
         [HttpGet("usuarios/{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(long id)
         {
             UsuarioDTO UsuarioDTO = await _usuarioService.GetById(id);
             UsuarioVM UsuarioVM = _mapper.Map<UsuarioVM>(UsuarioDTO);
@@ -52,7 +67,7 @@ namespace AutoTerraAPI.Controllers
 
 
         [HttpPost("usuarios")]
-        public async Task<IActionResult> Create(UsuarioVM UsuarioVM)
+        public async Task<IActionResult> Create([FromBody] UsuarioVM UsuarioVM)
         {
             UsuarioDTO UsuarioDTO = _mapper.Map<UsuarioDTO>(UsuarioVM);
 
@@ -61,7 +76,7 @@ namespace AutoTerraAPI.Controllers
         }
 
         [HttpPut("usuarios/{id}")]
-        public async Task<IActionResult> Update(int id, UsuarioVM UsuarioVM)
+        public async Task<IActionResult> Update(long id, UsuarioVM UsuarioVM)
         {
             UsuarioDTO UsuarioDTO = _mapper.Map<UsuarioDTO>(UsuarioVM);
 
@@ -70,7 +85,7 @@ namespace AutoTerraAPI.Controllers
         }
 
         [HttpDelete("usuarios/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(long id)
         {
             _usuarioService.Delete(id);
             return Ok();

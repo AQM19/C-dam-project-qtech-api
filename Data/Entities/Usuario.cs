@@ -11,9 +11,9 @@ public partial class Usuario
 
     public string Contrasena { get; set; } = null!;
 
-    public string Nombre { get; set; } = null!;
+    public string? Nombre { get; set; } = null!;
 
-    public string Apellido1 { get; set; } = null!;
+    public string? Apellido1 { get; set; } = null!;
 
     public string? Apellido2 { get; set; }
 
@@ -31,13 +31,9 @@ public partial class Usuario
 
     public string Perfil { get; set; } = null!;
 
-    public virtual ICollection<Alerta> Alerta { get; } = new List<Alerta>();
-
     public virtual ICollection<ConfiguracionUsuario> ConfiguracionUsuarios { get; } = new List<ConfiguracionUsuario>();
 
     public virtual ICollection<Estadistica> Estadisticas { get; } = new List<Estadistica>();
-
-    public virtual ICollection<HistorialCambio> HistorialCambios { get; } = new List<HistorialCambio>();
 
     public virtual ICollection<Terrario> Terrarios { get; } = new List<Terrario>();
 

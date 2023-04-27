@@ -3,11 +3,6 @@ using Business.DTOs;
 using Business.Interfaces;
 using Data.Context;
 using Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Services
 {
@@ -22,19 +17,12 @@ namespace Business.Services
             _mapper = mapper;
         }
 
+        #region CRUD
         public async void Create(TerrarioDTO TerrarioDTO)
         {
             Terrario Terrario = _mapper.Map<Terrario>(TerrarioDTO);
 
             _context.Terrarios.Add(Terrario);
-            _context.SaveChanges();
-        }
-
-        public async void Delete(int id)
-        {
-            Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id);
-
-            _context.Remove(Terrario);
             _context.SaveChanges();
         }
 
@@ -46,15 +34,16 @@ namespace Business.Services
             return alertaDTOs;
         }
 
-        public async Task<TerrarioDTO> GetById(int id)
+        public async Task<TerrarioDTO> GetById(long id)
         {
+            //Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id && _context.Usuarios.FirstOrDefault(x => x.Id == a.Idusuario && x.Borrado == 0) != null);
             Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id);
             TerrarioDTO TerrarioDTO = _mapper.Map<TerrarioDTO>(Terrario);
 
             return TerrarioDTO;
         }
 
-        public async void Update(int id, TerrarioDTO TerrarioDTO)
+        public async void Update(long id, TerrarioDTO TerrarioDTO)
         {
             Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id);
 
@@ -86,5 +75,18 @@ namespace Business.Services
 
             _context.SaveChanges();
         }
+
+        public async void Delete(long id)
+        {
+            Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id);
+
+            _context.Remove(Terrario);
+            _context.SaveChanges();
+        }
+        #endregion
+
+        #region Custom
+
+        #endregion
     }
 }

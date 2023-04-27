@@ -25,7 +25,7 @@ namespace Business.Services
             _context.SaveChanges();
         }
 
-        public async void Delete(int id)
+        public async void Delete(long id)
         {
             UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
 
@@ -41,15 +41,15 @@ namespace Business.Services
             return alertaDTOs;
         }
 
-        public async Task<UsuarioLogroDTO> GetById(int id)
+        public async Task<ICollection<UsuarioLogroDTO>> GetById(long id)
         {
-            UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
-            UsuarioLogroDTO UsuarioLogroDTO = _mapper.Map<UsuarioLogroDTO>(UsuarioLogro);
+            List<UsuarioLogro> UsuarioLogro = _context.UsuarioLogros.Where(x => x.Idusuario == id).ToList();
+            ICollection<UsuarioLogroDTO> UsuarioLogroDTO = _mapper.Map<ICollection<UsuarioLogroDTO>>(UsuarioLogro);
 
             return UsuarioLogroDTO;
         }
 
-        public async void Update(int id, UsuarioLogroDTO UsuarioLogroDTO)
+        public async void Update(long id, UsuarioLogroDTO UsuarioLogroDTO)
         {
             UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
 
