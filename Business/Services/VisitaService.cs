@@ -17,6 +17,8 @@ namespace Business.Services
             _mapper = mapper;
         }
 
+
+        #region CRUD
         public async void Create(VisitaDTO VisitaDTO)
         {
             Visita Visita = _mapper.Map<Visita>(VisitaDTO);
@@ -24,15 +26,6 @@ namespace Business.Services
             _context.Visitas.Add(Visita);
             _context.SaveChanges();
         }
-
-        public async void Delete(int id)
-        {
-            Visita Visita = _context.Visitas.FirstOrDefault(a => a.Id == id);
-
-            _context.Remove(Visita);
-            _context.SaveChanges();
-        }
-
         public async Task<ICollection<VisitaDTO>> GetAll()
         {
             List<Visita> Visitas = _context.Visitas.ToList();
@@ -40,7 +33,6 @@ namespace Business.Services
 
             return alertaDTOs;
         }
-
         public async Task<VisitaDTO> GetById(int id)
         {
             Visita Visita = _context.Visitas.FirstOrDefault(a => a.Id == id);
@@ -48,7 +40,6 @@ namespace Business.Services
 
             return VisitaDTO;
         }
-
         public async void Update(int id, VisitaDTO VisitaDTO)
         {
             Visita Visita = _context.Visitas.FirstOrDefault(a => a.Id == id);
@@ -62,5 +53,13 @@ namespace Business.Services
 
             _context.SaveChanges();
         }
+        public async void Delete(int id)
+        {
+            Visita Visita = _context.Visitas.FirstOrDefault(a => a.Id == id);
+
+            _context.Remove(Visita);
+            _context.SaveChanges();
+        }
+        #endregion
     }
 }

@@ -3077,11 +3077,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\Proyectos\\QTechAPI\\AutoTerraAPI\\AutoTerraAPI.csproj",
+      "projectUniqueName": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\AutoTerraAPI\\AutoTerraAPI.csproj",
       "projectName": "AutoTerraAPI",
-      "projectPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\Proyectos\\QTechAPI\\AutoTerraAPI\\AutoTerraAPI.csproj",
+      "projectPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\AutoTerraAPI\\AutoTerraAPI.csproj",
       "packagesPath": "C:\\Users\\a.quintanal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\Proyectos\\QTechAPI\\AutoTerraAPI\\obj\\",
+      "outputPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\AutoTerraAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3102,8 +3102,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\Proyectos\\QTechAPI\\Business\\Business.csproj": {
-              "projectPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\Proyectos\\QTechAPI\\Business\\Business.csproj"
+            "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\Business\\Business.csproj": {
+              "projectPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\Business\\Business.csproj"
             }
           }
         }

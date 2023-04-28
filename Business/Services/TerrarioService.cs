@@ -20,12 +20,14 @@ namespace Business.Services
         #region CRUD
         public async void Create(TerrarioDTO TerrarioDTO)
         {
+            if (TerrarioDTO == null) return;
+
             Terrario Terrario = _mapper.Map<Terrario>(TerrarioDTO);
 
             _context.Terrarios.Add(Terrario);
             _context.SaveChanges();
         }
-
+        
         public async Task<ICollection<TerrarioDTO>> GetAll()
         {
             List<Terrario> Terrarios = _context.Terrarios.Where(a => a.Usuario.Borrado == 0).ToList();

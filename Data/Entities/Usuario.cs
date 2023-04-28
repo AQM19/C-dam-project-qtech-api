@@ -39,7 +39,7 @@ public partial class Usuario
 
     public virtual ICollection<UsuarioLogro> UsuarioLogros { get; } = new List<UsuarioLogro>();
 
-    public virtual ICollection<UsuarioUsuario> UsuarioUsuarioIdcontactoNavigations { get; } = new List<UsuarioUsuario>();
+    public virtual ICollection<UsuarioUsuario> Contactos { get; } = new List<UsuarioUsuario>();
 
     public virtual ICollection<UsuarioUsuario> UsuarioUsuarioIdusuarioNavigations { get; } = new List<UsuarioUsuario>();
 

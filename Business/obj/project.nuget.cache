@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YwZDgdB5t01U12UMjzi9XWYTLR+Ab/iyqfv4zjGAubCOwG1l1bmTDwey5Bp4L9QlorH6AjZS5CvJMWbse9TeZw==",
+  "dgSpecHash": "d89e8ckZdooFzf1okP+BmtuAXvdYTrhzPO48qyc/cFbbUC4fBKJJsOYFdZrY4s/5CU5qSTevNIcmSMC9uHwKww==",
   "success": true,
-  "projectFilePath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\Proyectos\\QTechAPI\\Business\\Business.csproj",
+  "projectFilePath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\Business\\Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\a.quintanal\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\a.quintanal\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

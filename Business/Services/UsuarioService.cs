@@ -19,6 +19,7 @@ namespace Business.Services
             _mapper = mapper;
         }
 
+        #region CRUD
         public async void Create(UsuarioDTO UsuarioDTO)
         {
             Usuario Usuario = _mapper.Map<Usuario>(UsuarioDTO);
@@ -26,15 +27,6 @@ namespace Business.Services
             _context.Usuarios.Add(Usuario);
             _context.SaveChanges();
         }
-
-        public async void Delete(long id)
-        {
-            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
-            Usuario.Borrado = 1;
-
-            _context.SaveChanges();
-        }
-
         public async Task<ICollection<UsuarioDTO>> GetAll()
         {
             ICollection<Usuario> Usuarios = _context.Usuarios.Where(x => x.Borrado == 0).ToList();
@@ -42,15 +34,6 @@ namespace Business.Services
 
             return alertaDTOs;
         }
-
-        public async Task<ICollection<UsuarioDTO>> GetSocial(long id)
-        {
-            ICollection<Usuario> social = _context.Usuarios.Where(x => x.Id != id && x.Borrado == 0).ToList();
-            ICollection<UsuarioDTO> socialDTO = _mapper.Map<ICollection<UsuarioDTO>>(social);
-
-            return socialDTO;
-        }
-
         public async Task<UsuarioDTO> GetById(long id)
         {
             Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
@@ -58,7 +41,41 @@ namespace Business.Services
 
             return UsuarioDTO;
         }
+        public async void Update(long id, UsuarioDTO UsuarioDTO)
+        {
+            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
 
+            Usuario.Id = UsuarioDTO.Id;
+            Usuario.Nombre = UsuarioDTO.Nombre;
+            Usuario.NombreUsuario = UsuarioDTO.NombreUsuario;
+            Usuario.Contrasena = UsuarioDTO.Contrasena;
+            Usuario.Apellido1 = UsuarioDTO.Apellido1;
+            Usuario.Apellido2 = UsuarioDTO.Apellido2;
+            Usuario.FechaNacimiento = UsuarioDTO.FechaNacimiento;
+            Usuario.Email = UsuarioDTO.Email;
+            Usuario.Telefono = UsuarioDTO.Telefono;
+            Usuario.FotoPerfil = UsuarioDTO.FotoPerfil;
+            Usuario.Salt = UsuarioDTO.Salt;
+            Usuario.Perfil = UsuarioDTO.Perfil;
+
+            _context.SaveChanges();
+        }
+        public async void Delete(long id)
+        {
+            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
+            Usuario.Borrado = 1;
+
+            _context.SaveChanges();
+        }
+        #endregion
+        #region Custom
+        public async Task<ICollection<UsuarioDTO>> GetSocial(long id) //op
+        {
+            ICollection<Usuario> social = _context.Usuarios.Where(x => x.Id != id && x.Borrado == 0 && !x.Contactos.Any(c => c.Idusuario == id)).ToList();
+            ICollection<UsuarioDTO> socialDTO = _mapper.Map<ICollection<UsuarioDTO>>(social);
+
+            return socialDTO;
+        }
         public async Task<UsuarioDTO> GetByLogin(string param, string password)
         {
             Usuario usuario = _context.Usuarios.FirstOrDefault(x => (x.NombreUsuario == param || x.Email == param) && x.Borrado == 0);
@@ -83,32 +100,14 @@ namespace Business.Services
 
             return null;
         }
-
-        public async void Update(long id, UsuarioDTO UsuarioDTO)
-        {
-            Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
-
-            Usuario.Id = UsuarioDTO.Id;
-            Usuario.Nombre = UsuarioDTO.Nombre;
-            Usuario.NombreUsuario = UsuarioDTO.NombreUsuario;
-            Usuario.Contrasena = UsuarioDTO.Contrasena;
-            Usuario.Apellido1 = UsuarioDTO.Apellido1;
-            Usuario.Apellido2 = UsuarioDTO.Apellido2;
-            Usuario.FechaNacimiento = UsuarioDTO.FechaNacimiento;
-            Usuario.Email = UsuarioDTO.Email;
-            Usuario.Telefono = UsuarioDTO.Telefono;
-            Usuario.FotoPerfil = UsuarioDTO.FotoPerfil;
-            Usuario.Salt = UsuarioDTO.Salt;
-            Usuario.Perfil = UsuarioDTO.Perfil;
-
-            _context.SaveChanges();
-        }
-
         public async Task<bool> CheckUser(string param)
         {
             Usuario usuario = _context.Usuarios.FirstOrDefault(x => (x.NombreUsuario == param || x.Email == param) && x.Borrado == 0);
 
             return usuario == null ? true : false;
         }
+        #endregion
+
+
     }
 }

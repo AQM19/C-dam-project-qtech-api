@@ -438,7 +438,7 @@ public partial class QtechContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_contacto");
 
-            entity.HasOne(d => d.IdcontactoNavigation).WithMany(p => p.UsuarioUsuarioIdcontactoNavigations)
+            entity.HasOne(d => d.IdcontactoNavigation).WithMany(p => p.Contactos)
                 .HasForeignKey(d => d.Idcontacto)
                 .HasConstraintName("fk_contacto");
 

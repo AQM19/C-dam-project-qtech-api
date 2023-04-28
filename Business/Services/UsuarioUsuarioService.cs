@@ -17,6 +17,7 @@ namespace Business.Services
             _mapper = mapper;
         }
 
+        #region CRUD
         public async void Create(UsuarioUsuarioDTO UsuarioUsuarioDTO)
         {
             UsuarioUsuario UsuarioUsuario = _mapper.Map<UsuarioUsuario>(UsuarioUsuarioDTO);
@@ -24,15 +25,6 @@ namespace Business.Services
             _context.UsuarioUsuarios.Add(UsuarioUsuario);
             _context.SaveChanges();
         }
-
-        public async void Delete(int id)
-        {
-            UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
-
-            _context.Remove(UsuarioUsuario);
-            _context.SaveChanges();
-        }
-
         public async Task<ICollection<UsuarioUsuarioDTO>> GetAll()
         {
             List<UsuarioUsuario> UsuarioUsuarios = _context.UsuarioUsuarios.ToList();
@@ -40,7 +32,6 @@ namespace Business.Services
 
             return alertaDTOs;
         }
-
         public async Task<UsuarioUsuarioDTO> GetById(int id)
         {
             UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
@@ -48,7 +39,6 @@ namespace Business.Services
 
             return UsuarioUsuarioDTO;
         }
-
         public async void Update(int id, UsuarioUsuarioDTO UsuarioUsuarioDTO)
         {
             UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
@@ -59,5 +49,15 @@ namespace Business.Services
 
             _context.SaveChanges();
         }
+        public async void Delete(int id)
+        {
+            UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
+
+            _context.Remove(UsuarioUsuario);
+            _context.SaveChanges();
+        }
+        #endregion
+
+
     }
 }
