@@ -348,7 +348,7 @@ public partial class QtechContext : DbContext
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("temperatura_minima_hiber");
 
-            entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Terrarios)
+            entity.HasOne(d => d.Usuario).WithMany(p => p.Terrarios)
                 .HasForeignKey(d => d.Idusuario)
                 .HasConstraintName("id_terrarios_usuario");
         });

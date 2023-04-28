@@ -59,7 +59,7 @@ public partial class Terrario
 
     public virtual ICollection<EspecieTerrario> EspecieTerrarios { get; } = new List<EspecieTerrario>();
 
-    public virtual Usuario IdusuarioNavigation { get; set; } = null!;
+    public virtual Usuario Usuario { get; set; } = null!;
 
     public virtual ICollection<Notificacion> Notificacions { get; } = new List<Notificacion>();
 

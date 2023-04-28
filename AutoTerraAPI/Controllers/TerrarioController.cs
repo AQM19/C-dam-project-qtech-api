@@ -34,6 +34,10 @@ namespace AutoTerraAPI.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             TerrarioDTO TerrarioDTO = await _terrarioService.GetById(id);
+
+            if (TerrarioDTO == null)
+                return NotFound($"El terrario con el ID {id} no existe.");
+
             TerrarioVM TerrarioVM = _mapper.Map<TerrarioVM>(TerrarioDTO);
 
             return Ok(TerrarioVM);

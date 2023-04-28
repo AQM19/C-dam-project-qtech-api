@@ -28,7 +28,7 @@ namespace Business.Services
 
         public async Task<ICollection<TerrarioDTO>> GetAll()
         {
-            List<Terrario> Terrarios = _context.Terrarios.ToList();
+            List<Terrario> Terrarios = _context.Terrarios.Where(a => a.Usuario.Borrado == 0).ToList();
             ICollection<TerrarioDTO> alertaDTOs = _mapper.Map<ICollection<TerrarioDTO>>(Terrarios);
 
             return alertaDTOs;
@@ -36,8 +36,7 @@ namespace Business.Services
 
         public async Task<TerrarioDTO> GetById(long id)
         {
-            //Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id && _context.Usuarios.FirstOrDefault(x => x.Id == a.Idusuario && x.Borrado == 0) != null);
-            Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id);
+            Terrario Terrario = _context.Terrarios.FirstOrDefault(a => a.Id == id && a.Usuario.Borrado == 0);
             TerrarioDTO TerrarioDTO = _mapper.Map<TerrarioDTO>(Terrario);
 
             return TerrarioDTO;
