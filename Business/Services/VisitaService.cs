@@ -61,5 +61,15 @@ namespace Business.Services
             _context.SaveChanges();
         }
         #endregion
+
+        #region CUSTOM
+        public async Task<ICollection<VisitaDTO>> GetVisitasTerrario(long id)
+        {
+            ICollection<Visita> visitas = _context.Visitas.Where(x => x.Idterrario == id).ToList();
+            ICollection<VisitaDTO> visitaDTOs = _mapper.Map<ICollection<VisitaDTO>>(visitas);
+
+            return visitaDTOs;
+        }
+        #endregion
     }
 }

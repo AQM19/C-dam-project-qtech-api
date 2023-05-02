@@ -31,7 +31,6 @@ namespace Business.Services
             _context.EspecieTerrarios.Add(EspecieTerrario);
             _context.SaveChanges();
         }
-
         public async void Delete(int idterrario, int idespecie)
         {
             EspecieTerrario EspecieTerrario = _context.EspecieTerrarios.FirstOrDefault(a => a.Idterrario == idterrario && a.Idespecie == idespecie);
@@ -39,7 +38,6 @@ namespace Business.Services
             _context.Remove(EspecieTerrario);
             _context.SaveChanges();
         }
-
         public async Task<ICollection<EspecieTerrarioDTO>> GetAll()
         {
             List<EspecieTerrario> EspecieTerrarios = _context.EspecieTerrarios.ToList();
@@ -47,7 +45,6 @@ namespace Business.Services
 
             return alertaDTOs;
         }
-
         public async Task<EspecieTerrarioDTO> GetById(int idterrario, int idespecie)
         {
             EspecieTerrario EspecieTerrario = _context.EspecieTerrarios.FirstOrDefault(a => a.Idterrario == idterrario && a.Idespecie == idespecie);
@@ -55,7 +52,6 @@ namespace Business.Services
 
             return EspecieTerrarioDTO;
         }
-
         public async void Update(int idterrario, int idespecie, EspecieTerrarioDTO EspecieTerrarioDTO)
         {
             EspecieTerrario EspecieTerrario = _context.EspecieTerrarios.FirstOrDefault(a => a.Idterrario == idterrario && a.Idespecie == idespecie);

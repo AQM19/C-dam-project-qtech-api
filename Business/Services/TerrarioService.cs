@@ -84,9 +84,16 @@ namespace Business.Services
             _context.Remove(Terrario);
             _context.SaveChanges();
         }
+
         #endregion
 
         #region Custom
+        public async Task<ICollection<TerrarioDTO>> GetTerrariosSocial(long id)
+        {
+            ICollection<Terrario> terrarios = _context.Terrarios.Where(x => x.Idusuario != id && x.Usuario.Borrado == 0).ToList();
+            ICollection<TerrarioDTO> terrarioDTOs = _mapper.Map<ICollection<TerrarioDTO>>(terrarios);
+            return terrarioDTOs;
+        }
 
         #endregion
     }

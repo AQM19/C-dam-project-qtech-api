@@ -43,6 +43,14 @@ namespace AutoTerraAPI.Controllers
             return Ok(TerrarioVM);
         }
 
+        [HttpGet("terrarios-social/{id}")]
+        public async Task<IActionResult> GetTerrariosSocial(long id)
+        {
+            ICollection<TerrarioDTO> terrarioDTOs = await _terrarioService.GetTerrariosSocial(id);
+            ICollection<TerrarioVM> terrarioVMs = _mapper.Map<ICollection<TerrarioVM>>(terrarioDTOs); 
+            return Ok(terrarioVMs);
+        }
+
         [HttpPost("terrarios")]
         public async Task<IActionResult> Create(TerrarioVM TerrarioVM)
         {

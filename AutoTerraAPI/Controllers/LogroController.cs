@@ -38,6 +38,14 @@ namespace AutoTerraAPI.Controllers
             return Ok(LogroVM);
         }
 
+        [HttpGet("logros-usuario/{id}")]
+        public async Task<IActionResult> GetLogrosUsuario(long id)
+        {
+            ICollection<LogroDTO> logroDTOs = await _logroService.GetLogrosUsuario(id);
+            ICollection<LogroVM> logroVMs = _mapper.Map<ICollection<LogroVM>>(logroDTOs);
+            return Ok(logroVMs);
+        }
+
         [HttpPost("logros")]
         public async Task<IActionResult> Create(LogroVM LogroVM)
         {

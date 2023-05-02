@@ -106,8 +106,13 @@ namespace Business.Services
 
             return usuario == null ? true : false;
         }
+        public async Task<ICollection<UsuarioDTO>> SearchUser(string param)
+        {
+            ICollection<Usuario> usuarios = _context.Usuarios.Where(x => x.NombreUsuario.Contains(param)).ToList();
+            ICollection<UsuarioDTO> usuarioDTOs = _mapper.Map<ICollection<UsuarioDTO>>(usuarios);
+
+            return usuarioDTOs;
+        }
         #endregion
-
-
     }
 }

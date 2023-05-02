@@ -9,5 +9,7 @@ namespace Business.Interfaces
         void Create(TerrarioDTO terrarioDTO);
         void Update(long id, TerrarioDTO terrarioDTO);
         void Delete(long id);
+
+        Task<ICollection<TerrarioDTO>> GetTerrariosSocial(long id);
     }
 }

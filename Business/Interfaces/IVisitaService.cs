@@ -9,5 +9,7 @@ namespace Business.Interfaces
         void Create(VisitaDTO visitaDTO);
         void Update(int id, VisitaDTO visitaDTO);
         void Delete(int id);
+
+        Task<ICollection<VisitaDTO>> GetVisitasTerrario(long id);
     }
 }

@@ -13,6 +13,7 @@ namespace Business.Interfaces
         // Custom
         Task<UsuarioDTO> GetByLogin(string param, string password);
         Task<ICollection<UsuarioDTO>> GetSocial(long id);
-        Task<bool> CheckUser(string patam);
+        Task<bool> CheckUser(string param);
+        Task<ICollection<UsuarioDTO>> SearchUser(string param);
     }
 }

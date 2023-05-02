@@ -39,6 +39,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(VisitaVM);
         }
 
+        [HttpGet("visitas/q={id}")]
+        public async Task<IActionResult> GetVisitasTerrario(long id)
+        {
+            ICollection<VisitaDTO> visitaDTOs = await _visitaService.GetVisitasTerrario(id);
+            ICollection<VisitaVM> visitaVMs = _mapper.Map<ICollection<VisitaVM>>(visitaDTOs);
+
+            return Ok(visitaVMs);
+        }
+
         [HttpPost("visitas")]
         public async Task<IActionResult> Create(VisitaVM VisitaVM)
         {

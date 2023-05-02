@@ -2643,23 +2643,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\a.quintanal\\.nuget\\packages\\": {},
+    "C:\\Users\\aaron\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTechAPI\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\a.quintanal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\a.quintanal\\Desktop\\aquintanal\\ProyectosPersonales\\QTechAPI\\Data\\obj\\",
+      "projectPath": "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTechAPI\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\aaron\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\aaron\\OneDrive\\Escritorio\\PROJECTS\\QTechAPI\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\a.quintanal\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\aaron\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2727,7 +2727,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

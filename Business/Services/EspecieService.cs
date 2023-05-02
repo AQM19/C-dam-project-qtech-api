@@ -30,7 +30,6 @@ namespace Business.Services
             _context.Especies.Add(Especie);
             _context.SaveChanges();
         }
-
         public async void Delete(int id)
         {
             Especie Especie = _context.Especies.FirstOrDefault(a => a.Id == id);
@@ -38,7 +37,6 @@ namespace Business.Services
             _context.Remove(Especie);
             _context.SaveChanges();
         }
-
         public async Task<ICollection<EspecieDTO>> GetAll()
         {
             List<Especie> Especies = _context.Especies.ToList();
@@ -46,7 +44,6 @@ namespace Business.Services
 
             return alertaDTOs;
         }
-
         public async Task<EspecieDTO> GetById(int id)
         {
             Especie Especie = _context.Especies.FirstOrDefault(a => a.Id == id);
@@ -54,7 +51,6 @@ namespace Business.Services
 
             return EspecieDTO;
         }
-
         public async void Update(int id, EspecieDTO EspecieDTO)
         {
             Especie Especie = _context.Especies.FirstOrDefault(a => a.Id == id);
@@ -78,6 +74,15 @@ namespace Business.Services
             Especie.HorasLuzHib = EspecieDTO.HorasLuzHib;
 
             _context.SaveChanges();
+        }
+
+
+        public async Task<ICollection<EspecieDTO>> GetEspeciesTerrario(long idTerrario)
+        {
+            ICollection<Especie> especies = _context.Especies.Where(x => x.EspecieTerrarios.Any(c => c.Idterrario == idTerrario)).ToList();
+            ICollection<EspecieDTO> especieDTOs = _mapper.Map<ICollection<EspecieDTO>>(especies);
+
+            return especieDTOs;
         }
     }
 }

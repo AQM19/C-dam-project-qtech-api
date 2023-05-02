@@ -9,5 +9,7 @@ namespace Business.Interfaces
         void Create(LogroDTO logroDTO);
         void Update(int id, LogroDTO logroDTO);
         void Delete(int id);
+
+        Task<ICollection<LogroDTO>> GetLogrosUsuario(long id);
     }
 }

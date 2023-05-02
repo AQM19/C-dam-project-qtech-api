@@ -49,6 +49,13 @@ namespace Business.Services
             return LogroDTO;
         }
 
+        public async Task<ICollection<LogroDTO>> GetLogrosUsuario(long id)
+        {
+            ICollection<Logro> logros = _context.Logros.Where(x => x.UsuarioLogros.Any(c => c.Idusuario == id)).ToList();
+            ICollection<LogroDTO> logroDTOs = _mapper.Map<ICollection<LogroDTO>>(logros);
+            return logroDTOs;
+        }
+
         public async void Update(int id, LogroDTO LogroDTO)
         {
             Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);

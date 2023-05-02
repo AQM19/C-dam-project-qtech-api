@@ -38,7 +38,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
-        [HttpGet("usuarios/check/{param}")]
+        [HttpGet("usuarios/q={param}")]
+        public async Task<IActionResult> SearchUser(string param)
+        {
+            ICollection<UsuarioDTO> usuarioDTOs = await _usuarioService.SearchUser(param);
+            ICollection<UsuarioVM> usuarioVMs = _mapper.Map<ICollection<UsuarioVM>>(usuarioDTOs);
+            return Ok(usuarioVMs);
+        }
+
+        [HttpGet("usuarios/c={param}")]
         public async Task<IActionResult> CheckUser(string param)
         {
             return Ok(await _usuarioService.CheckUser(param));

@@ -38,6 +38,14 @@ namespace AutoTerraAPI.Controllers
             return Ok(EspecieVM);
         }
 
+        [HttpGet("especies/q={id}")]
+        public async Task<IActionResult> GetEspeciesTerrario(long id)
+        {
+            ICollection<EspecieDTO> especieDTOs = await _especieService.GetEspeciesTerrario(id);
+            ICollection<EspecieVM> especieVMs = _mapper.Map<ICollection<EspecieVM>>(especieDTOs);
+            return Ok(especieVMs);
+        }
+
         [HttpPost("especies")]
         public async Task<IActionResult> Create(EspecieVM EspecieVM)
         {
