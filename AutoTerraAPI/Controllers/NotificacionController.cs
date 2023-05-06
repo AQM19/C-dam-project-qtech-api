@@ -39,6 +39,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(NotificacionVM);
         }
 
+        [HttpGet("notificaciones/usuario/{id}")]
+        public async Task<IActionResult> GetAllByUserId(long id)
+        {
+            ICollection<NotificacionDTO> notificacionDTOs = await _notificacionService.GetAllByUserId(id);
+            ICollection<NotificacionVM> notificacionVMs = _mapper.Map<ICollection<NotificacionVM>>(notificacionDTOs);
+
+            return Ok(notificacionVMs);
+        }
+
         [HttpPost("notificacions")]
         public async Task<IActionResult> Create(NotificacionVM NotificacionVM)
         {

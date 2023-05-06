@@ -215,7 +215,7 @@ public partial class QtechContext : DbContext
                 .HasColumnName("texto");
             entity.Property(e => e.Vista).HasColumnName("vista");
 
-            entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Notificacions)
+            entity.HasOne(d => d.Terrario).WithMany(p => p.Notificacions)
                 .HasForeignKey(d => d.Idterrario)
                 .HasConstraintName("fk_notificacion");
         });

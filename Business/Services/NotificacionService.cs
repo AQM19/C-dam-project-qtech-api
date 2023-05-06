@@ -46,6 +46,14 @@ namespace Business.Services
             return alertaDTOs;
         }
 
+        public async Task<ICollection<NotificacionDTO>> GetAllByUserId(long userId)
+        {
+            ICollection<Notificacion> notificaciones = _context.Notificaciones.Where(x => x.Terrario.Idusuario == userId && x.Vista == 0).ToList();
+            ICollection<NotificacionDTO> notificacionDTOs = _mapper.Map<ICollection<NotificacionDTO>>(notificaciones);
+            
+            return notificacionDTOs;
+        }
+
         public async Task<NotificacionDTO> GetById(int id)
         {
             Notificacion Notificacion = _context.Notificaciones.FirstOrDefault(a => a.Id == id);

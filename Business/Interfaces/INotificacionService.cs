@@ -9,5 +9,7 @@ namespace Business.Interfaces
         void Create(NotificacionDTO notificacionDTO);
         void Update(int id, NotificacionDTO notificacionDTO);
         void Delete(int id);
+
+        Task<ICollection<NotificacionDTO>> GetAllByUserId(long userId);
     }
 }

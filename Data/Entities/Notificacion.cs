@@ -15,5 +15,5 @@ public partial class Notificacion
 
     public sbyte Vista { get; set; }
 
-    public virtual Terrario IdterrarioNavigation { get; set; } = null!;
+    public virtual Terrario Terrario { get; set; } = null!;
 }
