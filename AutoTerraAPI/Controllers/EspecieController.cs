@@ -46,20 +46,25 @@ namespace AutoTerraAPI.Controllers
             return Ok(especieVMs);
         }
 
+        [HttpPost("especies/not-in")]
+        public async Task<IActionResult> GetEspeciesNotInTerrario([FromBody] ICollection<EspecieVM> lista)
+        {
+            ICollection<EspecieDTO> especieDTOs = await _especieService.GetEspeciesPosibles(_mapper.Map<ICollection<EspecieDTO>>(lista));
+            return Ok(especieDTOs);
+        }
+
         [HttpPost("especies")]
         public async Task<IActionResult> Create(EspecieVM EspecieVM)
         {
             EspecieDTO EspecieDTO = _mapper.Map<EspecieDTO>(EspecieVM);
-
             _especieService.Create(EspecieDTO);
             return Ok();
         }
 
         [HttpPut("especies/{id}")]
-        public async Task<IActionResult> Update(int id, EspecieVM EspecieVM)
+        public async Task<IActionResult> Update(long id, EspecieVM EspecieVM)
         {
             EspecieDTO EspecieDTO = _mapper.Map<EspecieDTO>(EspecieVM);
-
             _especieService.Update(id, EspecieDTO);
             return Ok();
         }

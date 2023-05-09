@@ -11,7 +11,7 @@ public partial class EspecieTerrario
 
     public DateTime? FechaInsercion { get; set; }
 
-    public virtual Especie IdespecieNavigation { get; set; } = null!;
+    public virtual Especie Especie { get; set; } = null!;
 
-    public virtual Terrario IdterrarioNavigation { get; set; } = null!;
+    public virtual Terrario Terrario { get; set; } = null!;
 }

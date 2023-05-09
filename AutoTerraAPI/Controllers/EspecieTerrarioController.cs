@@ -56,6 +56,14 @@ namespace AutoTerraAPI.Controllers
             return Ok();
         }
 
+        [HttpPut("especie-terrario/list/{id}")]
+        public async Task<IActionResult> UpdateOfTerrario(long id, [FromBody] List<EspecieTerrarioVM> list)
+        {
+            List<EspecieTerrarioDTO> EspecieTerrarioDTO = _mapper.Map<List<EspecieTerrarioDTO>>(list);
+            await _especieTerrario.UpdateOfTerrario(id, EspecieTerrarioDTO);
+            return Ok();
+        }
+
         [HttpDelete("especie-terrario/{id}")]
         public async Task<IActionResult> Delete(int id, int id2)
         {

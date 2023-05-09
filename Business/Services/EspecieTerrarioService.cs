@@ -62,5 +62,41 @@ namespace Business.Services
 
             _context.SaveChanges();
         }
+
+        public async Task UpdateOfTerrario(long id, List<EspecieTerrarioDTO> list)
+        {
+            try
+            {
+                List<EspecieTerrario> especieTerrarios = _mapper.Map<List<EspecieTerrario>>(list);
+                List<EspecieTerrario> especiesDatabase = _context.EspecieTerrarios.Where(x => x.Idterrario == id).ToList();
+
+                foreach(EspecieTerrario it in especieTerrarios)
+                {
+                    EspecieTerrario et = _context.EspecieTerrarios.FirstOrDefault(x => x.Idespecie == it.Idespecie);
+
+                    if(et == null) // bd no, lista si : crear
+                    {
+                        _context.EspecieTerrarios.Add(it);
+                    }
+                }
+
+                foreach(EspecieTerrario et in especiesDatabase)
+                {
+                    EspecieTerrario esp = especieTerrarios.FirstOrDefault(x => x.Idespecie == et.Idespecie);
+
+                    if(esp == null)// bd si, lista no : borrar bd
+                    {
+                        _context.EspecieTerrarios.Remove(et);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

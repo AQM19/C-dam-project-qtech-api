@@ -102,11 +102,11 @@ public partial class QtechContext : DbContext
                 .HasColumnType("datetime")
                 .HasColumnName("fecha_insercion");
 
-            entity.HasOne(d => d.IdespecieNavigation).WithMany(p => p.EspecieTerrarios)
+            entity.HasOne(d => d.Especie).WithMany(p => p.EspecieTerrarios)
                 .HasForeignKey(d => d.Idespecie)
                 .HasConstraintName("fk_especie");
 
-            entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.EspecieTerrarios)
+            entity.HasOne(d => d.Terrario).WithMany(p => p.EspecieTerrarios)
                 .HasForeignKey(d => d.Idterrario)
                 .HasConstraintName("fk_terrario");
         });

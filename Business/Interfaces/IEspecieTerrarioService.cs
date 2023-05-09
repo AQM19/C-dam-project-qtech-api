@@ -13,6 +13,7 @@ namespace Business.Interfaces
         #endregion
 
         #region Custom
+        Task UpdateOfTerrario(long id, List<EspecieTerrarioDTO> list);
         #endregion
     }
 }

@@ -5,13 +5,14 @@ namespace Business.Interfaces
     public interface IEspecieService
     {
         Task<ICollection<EspecieDTO>> GetAll();
-        Task<EspecieDTO> GetById(int id);
+        Task<EspecieDTO> GetById(long id);
         void Create(EspecieDTO especieDTO);
-        void Update(int id, EspecieDTO especieDTO);
-        void Delete(int id);
+        void Update(long id, EspecieDTO especieDTO);
+        void Delete(long id);
 
         #region Custom
         Task<ICollection<EspecieDTO>> GetEspeciesTerrario(long idTerrario);
+        Task<ICollection<EspecieDTO>> GetEspeciesPosibles(ICollection<EspecieDTO> especieDTOs);
         #endregion
     }
 }
