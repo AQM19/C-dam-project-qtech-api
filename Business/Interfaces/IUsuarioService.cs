@@ -15,5 +15,6 @@ namespace Business.Interfaces
         Task<ICollection<UsuarioDTO>> GetSocial(long id);
         Task<bool> CheckUser(string param);
         Task<ICollection<UsuarioDTO>> SearchUser(string param);
+        Task<bool> ComprobarSeguimiento(long idusuario, long idcontacto);
     }
 }

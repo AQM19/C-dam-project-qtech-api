@@ -52,6 +52,12 @@ namespace AutoTerraAPI.Controllers
             return Ok(await _usuarioService.CheckUser(param));
         }
 
+        [HttpGet("usuarios/{idusuario}/check/{idcontacto}")]
+        public async Task<IActionResult> ComprobarSeguimiento(long idusuario, long idcontacto)
+        {
+            return Ok(await _usuarioService.ComprobarSeguimiento(idusuario, idcontacto));
+        }
+
         [HttpGet("usuarios/{id}")]
         public async Task<IActionResult> GetById(long id)
         {

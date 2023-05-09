@@ -113,6 +113,12 @@ namespace Business.Services
 
             return usuarioDTOs;
         }
+
+        public async Task<bool> ComprobarSeguimiento(long idusuario, long idcontacto)
+        {
+            Usuario usuario = _context.Usuarios.FirstOrDefault(x => x.Id == idusuario && x.UsuarioUsuarioIdusuarioNavigations.Any(c => c.Idusuario == idcontacto));
+            return usuario != null ? true : false;
+        }
         #endregion
     }
 }
