@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Data.Entities;
+namespace Business.DTOs;
 
-public partial class Dato
+public partial class LecturaDTO
 {
     public long Id { get; set; }
 
@@ -16,6 +16,4 @@ public partial class Dato
     public float Humedad { get; set; }
 
     public int Luz { get; set; }
-
-    public virtual Terrario IdterrarioNavigation { get; set; } = null!;
 }

@@ -23,11 +23,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MapperDTO).Assembly, typeof(MapperVM).Assembly);
 
-builder.Services.AddScoped<IConfiguracionUsuarioService, ConfiguracionUsuarioService>();
-builder.Services.AddScoped<IDatoService, DatoService>();
+builder.Services.AddScoped<ILecturaService, LecturaService>();
 builder.Services.AddScoped<IEspecieService, EspecieService>();
 builder.Services.AddScoped<IEspecieTerrarioService, EspecieTerrarioService>();
-builder.Services.AddScoped<IEstadisticaService, EstadisticaService>();
 builder.Services.AddScoped<ILogroService, LogroService>();
 builder.Services.AddScoped<INotificacionService, NotificacionService>();
 builder.Services.AddScoped<IObservacionService, ObservacionService>();

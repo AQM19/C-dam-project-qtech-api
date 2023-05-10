@@ -14,15 +14,11 @@ public partial class QtechContext : DbContext
     {
     }
 
-    public virtual DbSet<ConfiguracionUsuario> ConfiguracionUsuarios { get; set; }
-
-    public virtual DbSet<Dato> Datos { get; set; }
+    public virtual DbSet<Lectura> Datos { get; set; }
 
     public virtual DbSet<EspecieTerrario> EspecieTerrarios { get; set; }
 
     public virtual DbSet<Especie> Especies { get; set; }
-
-    public virtual DbSet<Estadistica> Estadisticas { get; set; }
 
     public virtual DbSet<Logro> Logros { get; set; }
 
@@ -46,27 +42,7 @@ public partial class QtechContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
-        modelBuilder.Entity<ConfiguracionUsuario>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("configuracion_usuario");
-
-            entity.HasIndex(e => e.Idusuario, "fk_user_conf_idx");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Idioma)
-                .HasMaxLength(45)
-                .HasColumnName("idioma");
-            entity.Property(e => e.Idusuario).HasColumnName("idusuario");
-            entity.Property(e => e.Oscuro).HasColumnName("oscuro");
-
-            entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.ConfiguracionUsuarios)
-                .HasForeignKey(d => d.Idusuario)
-                .HasConstraintName("fk_user_conf");
-        });
-
-        modelBuilder.Entity<Dato>(entity =>
+        modelBuilder.Entity<Lectura>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
@@ -151,31 +127,6 @@ public partial class QtechContext : DbContext
                 .HasColumnName("Tipo");
         });
 
-        modelBuilder.Entity<Estadistica>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-
-            entity.ToTable("estadisticas");
-
-            entity.HasIndex(e => e.Idusuario, "fk_estadistica_usuario_idx");
-
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Idusuario).HasColumnName("idusuario");
-            entity.Property(e => e.NumeroAmigos).HasColumnName("numero_amigos");
-            entity.Property(e => e.NumeroAnimales).HasColumnName("numero_animales");
-            entity.Property(e => e.NumeroEspecies).HasColumnName("numero_especies");
-            entity.Property(e => e.NumeroIniciosSesion).HasColumnName("numero_inicios_sesion");
-            entity.Property(e => e.NumeroLogros).HasColumnName("numero_logros");
-            entity.Property(e => e.NumeroPlantas).HasColumnName("numero_plantas");
-            entity.Property(e => e.NumeroHongos).HasColumnName("numero_hongos");
-            entity.Property(e => e.NumeroTerrarios).HasColumnName("numero_terrarios");
-            entity.Property(e => e.PuntuacionMediaTerrarios).HasColumnName("puntuacion_media_terrarios");
-
-            entity.HasOne(d => d.IdusuarioNavigation).WithMany(p => p.Estadisticas)
-                .HasForeignKey(d => d.Idusuario)
-                .HasConstraintName("fk_estadistica_usuario");
-        });
-
         modelBuilder.Entity<Logro>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -214,6 +165,7 @@ public partial class QtechContext : DbContext
                 .HasMaxLength(250)
                 .HasColumnName("texto");
             entity.Property(e => e.Vista).HasColumnName("vista");
+            entity.Property(e => e.Gravedad).HasColumnName("gravedad");
 
             entity.HasOne(d => d.Terrario).WithMany(p => p.Notificacions)
                 .HasForeignKey(d => d.Idterrario)
@@ -311,9 +263,6 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.HumedadMaxima)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("humedad_maxima");
-            entity.Property(e => e.HumedadMedia)
-                .HasDefaultValueSql("'0'")
-                .HasColumnName("humedad_media");
             entity.Property(e => e.HumedadMinima)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("humedad_minima");
@@ -322,9 +271,6 @@ public partial class QtechContext : DbContext
                 .HasMaxLength(150)
                 .HasColumnName("nombre");
             entity.Property(e => e.Privado).HasColumnName("privado");
-            entity.Property(e => e.PuntuacionMedia)
-                .HasDefaultValueSql("'0'")
-                .HasColumnName("puntuacion_media");
             entity.Property(e => e.Sustrato)
                 .HasMaxLength(150)
                 .HasColumnName("sustrato");
@@ -335,12 +281,6 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.TemperaturaMaximaHiber)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("temperatura_maxima_hiber");
-            entity.Property(e => e.TemperaturaMedia)
-                .HasDefaultValueSql("'0'")
-                .HasColumnName("temperatura_media");
-            entity.Property(e => e.TemperaturaMediaHiber)
-                .HasDefaultValueSql("'0'")
-                .HasColumnName("temperatura_media_hiber");
             entity.Property(e => e.TemperaturaMinima)
                 .HasDefaultValueSql("'0'")
                 .HasColumnName("temperatura_minima");
@@ -470,7 +410,7 @@ public partial class QtechContext : DbContext
                 .HasColumnName("fecha");
             entity.Property(e => e.Puntuacion).HasColumnName("puntuacion");
 
-            entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Visita)
+            entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Visitas)
                 .HasForeignKey(d => d.Idterrario)
                 .HasConstraintName("fk_vista_terrario");
 

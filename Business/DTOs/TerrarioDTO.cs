@@ -30,23 +30,15 @@ public partial class TerrarioDTO
 
     public string? Foto { get; set; }
 
-    public float? PuntuacionMedia { get; set; }
-
     public float? TemperaturaMinima { get; set; }
 
     public float? TemperaturaMaxima { get; set; }
-
-    public float? TemperaturaMedia { get; set; }
 
     public float? TemperaturaMinimaHiber { get; set; }
 
     public float? TemperaturaMaximaHiber { get; set; }
 
-    public float? TemperaturaMediaHiber { get; set; }
-
     public float? HumedadMinima { get; set; }
-
-    public float? HumedadMedia { get; set; }
 
     public float? HumedadMaxima { get; set; }
 

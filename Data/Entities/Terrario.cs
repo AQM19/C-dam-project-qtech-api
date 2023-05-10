@@ -31,23 +31,15 @@ public partial class Terrario
 
     public string? Foto { get; set; }
 
-    public float? PuntuacionMedia { get; set; }
-
     public float? TemperaturaMinima { get; set; }
 
     public float? TemperaturaMaxima { get; set; }
-
-    public float? TemperaturaMedia { get; set; }
 
     public float? TemperaturaMinimaHiber { get; set; }
 
     public float? TemperaturaMaximaHiber { get; set; }
 
-    public float? TemperaturaMediaHiber { get; set; }
-
     public float? HumedadMinima { get; set; }
-
-    public float? HumedadMedia { get; set; }
 
     public float? HumedadMaxima { get; set; }
 
@@ -55,7 +47,7 @@ public partial class Terrario
 
     public int? HorasLuzHiber { get; set; }
 
-    public virtual ICollection<Dato> Datos { get; } = new List<Dato>();
+    public virtual ICollection<Lectura> Datos { get; } = new List<Lectura>();
 
     public virtual ICollection<EspecieTerrario> EspecieTerrarios { get; } = new List<EspecieTerrario>();
 
@@ -67,5 +59,5 @@ public partial class Terrario
 
     public virtual ICollection<Tarea> Tareas { get; } = new List<Tarea>();
 
-    public virtual ICollection<Visita> Visita { get; } = new List<Visita>();
+    public virtual ICollection<Visita> Visitas { get; } = new List<Visita>();
 }

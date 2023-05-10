@@ -10,12 +10,12 @@ namespace AutoTerraAPI.Controllers
 {
     [ApiController]
     [Route("autoterra/v1")]
-    public class DatoController : Controller
+    public class LecturaController : Controller
     {
-        private readonly IDatoService _datoService;
+        private readonly ILecturaService _datoService;
         private readonly IMapper _mapper;
 
-        public DatoController(IDatoService datoService, IMapper mapper)
+        public LecturaController(ILecturaService datoService, IMapper mapper)
         {
             _datoService = datoService;
             _mapper = mapper;
@@ -24,8 +24,8 @@ namespace AutoTerraAPI.Controllers
         [HttpGet("datos")]
         public async Task<IActionResult> GetAll()
         {
-            ICollection<DatoDTO> userDTOs = await _datoService.GetAll();
-            ICollection<DatoVM> userVMs = _mapper.Map<ICollection<DatoVM>>(userDTOs);
+            ICollection<LecturaDTO> userDTOs = await _datoService.GetAll();
+            ICollection<LecturaVM> userVMs = _mapper.Map<ICollection<LecturaVM>>(userDTOs);
 
             return Ok(userVMs);
         }
@@ -33,25 +33,25 @@ namespace AutoTerraAPI.Controllers
         [HttpGet("datos/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            DatoDTO DatoDTO = await _datoService.GetById(id);
-            DatoVM DatoVM = _mapper.Map<DatoVM>(DatoDTO);
+            LecturaDTO DatoDTO = await _datoService.GetById(id);
+            LecturaVM DatoVM = _mapper.Map<LecturaVM>(DatoDTO);
 
             return Ok(DatoVM);
         }
 
         [HttpPost("datos")]
-        public async Task<IActionResult> Create(DatoVM DatoVM)
+        public async Task<IActionResult> Create(LecturaVM DatoVM)
         {
-            DatoDTO DatoDTO = _mapper.Map<DatoDTO>(DatoVM);
+            LecturaDTO DatoDTO = _mapper.Map<LecturaDTO>(DatoVM);
 
             _datoService.Create(DatoDTO);
             return Ok();
         }
 
         [HttpPut("datos/{id}")]
-        public async Task<IActionResult> Update(int id, DatoVM DatoVM)
+        public async Task<IActionResult> Update(int id, LecturaVM DatoVM)
         {
-            DatoDTO DatoDTO = _mapper.Map<DatoDTO>(DatoVM);
+            LecturaDTO DatoDTO = _mapper.Map<LecturaDTO>(DatoVM);
 
             _datoService.Update(id, DatoDTO);
             return Ok();

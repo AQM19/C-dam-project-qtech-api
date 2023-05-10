@@ -8,11 +8,9 @@ namespace AutoTerraAPI.VMs.Mappers
     {
         public MapperVM()
         {
-            CreateMap<ConfiguracionUsuarioDTO, ConfiguracionUsuarioVM>().ReverseMap();
-            CreateMap<DatoDTO, DatoVM>().ReverseMap();
+            CreateMap<LecturaDTO, LecturaVM>().ReverseMap();
             CreateMap<EspecieDTO, EspecieVM>().ReverseMap();
             CreateMap<EspecieTerrarioDTO, EspecieTerrarioVM>().ReverseMap();
-            CreateMap<EstadisticaDTO, EstadisticaVM>().ReverseMap();
             CreateMap<LogroDTO, LogroVM>().ReverseMap();
             CreateMap<NotificacionDTO, NotificacionVM>().ReverseMap();
             CreateMap<ObservacionDTO, ObservacionVM>().ReverseMap();

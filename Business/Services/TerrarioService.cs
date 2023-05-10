@@ -3,6 +3,7 @@ using Business.DTOs;
 using Business.Interfaces;
 using Data.Context;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services
 {
@@ -27,7 +28,7 @@ namespace Business.Services
             _context.Terrarios.Add(Terrario);
             _context.SaveChanges();
         }
-        
+
         public async Task<ICollection<TerrarioDTO>> GetAll()
         {
             List<Terrario> Terrarios = _context.Terrarios.Where(a => a.Usuario.Borrado == 0).ToList();
@@ -61,15 +62,11 @@ namespace Business.Services
             Terrario.FechaCreacion = TerrarioDTO.FechaCreacion;
             Terrario.FechaUltimaModificacion = TerrarioDTO.FechaUltimaModificacion;
             Terrario.Foto = TerrarioDTO.Foto;
-            Terrario.PuntuacionMedia = TerrarioDTO.PuntuacionMedia;
             Terrario.TemperaturaMaxima = TerrarioDTO.TemperaturaMaxima;
-            Terrario.TemperaturaMedia = TerrarioDTO.TemperaturaMedia;
             Terrario.TemperaturaMinima = TerrarioDTO.TemperaturaMinima;
             Terrario.TemperaturaMaximaHiber = TerrarioDTO.TemperaturaMaximaHiber;
-            Terrario.TemperaturaMediaHiber = TerrarioDTO.TemperaturaMediaHiber;
             Terrario.TemperaturaMinimaHiber = TerrarioDTO.TemperaturaMinimaHiber;
             Terrario.HumedadMaxima = TerrarioDTO.HumedadMaxima;
-            Terrario.HumedadMedia = TerrarioDTO.HumedadMedia;
             Terrario.HumedadMinima = TerrarioDTO.HumedadMinima;
             Terrario.HorasLuz = TerrarioDTO.HorasLuz;
             Terrario.HorasLuzHiber = TerrarioDTO.HorasLuzHiber;
@@ -93,6 +90,21 @@ namespace Business.Services
             ICollection<Terrario> terrarios = _context.Terrarios.Where(x => x.Idusuario != id && x.Usuario.Borrado == 0).ToList();
             ICollection<TerrarioDTO> terrarioDTOs = _mapper.Map<ICollection<TerrarioDTO>>(terrarios);
             return terrarioDTOs;
+        }
+
+        public async Task<float> GetPuntuacionTerrario(long id)
+        {
+            try
+            {
+                float puntuacion = await _context.Terrarios.Where(x => x.Id == id)
+                                              .Select(x => x.Visitas.Average(y => y.Puntuacion))
+                                              .FirstOrDefaultAsync();
+                return puntuacion;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         #endregion

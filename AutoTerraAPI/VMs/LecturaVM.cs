@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Business.DTOs;
+namespace AutoTerraApi.VMs;
 
-public partial class DatoDTO
+public partial class LecturaVM
 {
     public long Id { get; set; }
 

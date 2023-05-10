@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AutoTerraApi.VMs;
+namespace Data.Entities;
 
-public partial class DatoVM
+public partial class Lectura
 {
     public long Id { get; set; }
 
@@ -16,4 +16,6 @@ public partial class DatoVM
     public float Humedad { get; set; }
 
     public int Luz { get; set; }
+
+    public virtual Terrario IdterrarioNavigation { get; set; } = null!;
 }

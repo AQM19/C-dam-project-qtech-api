@@ -13,4 +13,6 @@ public partial class NotificacionVM
     public string Texto { get; set; } = null!;
 
     public sbyte Vista { get; set; }
+
+    public string Gravedad { get; set; }
 }

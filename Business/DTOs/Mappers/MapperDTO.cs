@@ -7,11 +7,9 @@ namespace Business.DTOs.Mappers
     {
         public MapperDTO()
         {
-            CreateMap<ConfiguracionUsuario, ConfiguracionUsuarioDTO>().ReverseMap();
-            CreateMap<Dato, DatoDTO>().ReverseMap();
+            CreateMap<Lectura, LecturaDTO>().ReverseMap();
             CreateMap<Especie, EspecieDTO>().ReverseMap();
             CreateMap<EspecieTerrario, EspecieTerrarioDTO>().ReverseMap();
-            CreateMap<Estadistica, EstadisticaDTO>().ReverseMap();
             CreateMap<Logro, LogroDTO>().ReverseMap();
             CreateMap<Notificacion, NotificacionDTO>().ReverseMap();
             CreateMap<Observacion, ObservacionDTO>().ReverseMap();

@@ -31,10 +31,6 @@ public partial class Usuario
 
     public string Perfil { get; set; } = null!;
 
-    public virtual ICollection<ConfiguracionUsuario> ConfiguracionUsuarios { get; } = new List<ConfiguracionUsuario>();
-
-    public virtual ICollection<Estadistica> Estadisticas { get; } = new List<Estadistica>();
-
     public virtual ICollection<Terrario> Terrarios { get; } = new List<Terrario>();
 
     public virtual ICollection<UsuarioLogro> UsuarioLogros { get; } = new List<UsuarioLogro>();

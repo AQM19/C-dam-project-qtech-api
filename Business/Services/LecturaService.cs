@@ -11,21 +11,21 @@ using System.Threading.Tasks;
 
 namespace Business.Services
 {
-    public class DatoService : IDatoService
+    public class LecturaService : ILecturaService
     {
 
         private readonly QtechContext _context;
         private readonly IMapper _mapper;
 
-        public DatoService(QtechContext context, IMapper mapper)
+        public LecturaService(QtechContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async void Create(DatoDTO DatoDTO)
+        public async void Create(LecturaDTO DatoDTO)
         {
-            Dato Dato = _mapper.Map<Dato>(DatoDTO);
+            Lectura Dato = _mapper.Map<Lectura>(DatoDTO);
 
             _context.Datos.Add(Dato);
             _context.SaveChanges();
@@ -33,31 +33,31 @@ namespace Business.Services
 
         public async void Delete(int id)
         {
-            Dato Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+            Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
 
             _context.Remove(Dato);
             _context.SaveChanges();
         }
 
-        public async Task<ICollection<DatoDTO>> GetAll()
+        public async Task<ICollection<LecturaDTO>> GetAll()
         {
-            List<Dato> Datos = _context.Datos.ToList();
-            ICollection<DatoDTO> alertaDTOs = _mapper.Map<ICollection<DatoDTO>>(Datos);
+            List<Lectura> Datos = _context.Datos.ToList();
+            ICollection<LecturaDTO> alertaDTOs = _mapper.Map<ICollection<LecturaDTO>>(Datos);
 
             return alertaDTOs;
         }
 
-        public async Task<DatoDTO> GetById(int id)
+        public async Task<LecturaDTO> GetById(int id)
         {
-            Dato Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
-            DatoDTO DatoDTO = _mapper.Map<DatoDTO>(Dato);
+            Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+            LecturaDTO DatoDTO = _mapper.Map<LecturaDTO>(Dato);
 
             return DatoDTO;
         }
 
-        public async void Update(int id, DatoDTO DatoDTO)
+        public async void Update(int id, LecturaDTO DatoDTO)
         {
-            Dato Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+            Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
 
             Dato.Id = DatoDTO.Id;
             Dato.Idterrario = DatoDTO.Idterrario;
