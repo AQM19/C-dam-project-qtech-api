@@ -24,46 +24,86 @@ namespace Business.Services
 
         public async void Create(ObservacionDTO ObservacionDTO)
         {
-            Observacion Observacion = _mapper.Map<Observacion>(ObservacionDTO);
+            try
+            {
+                Observacion Observacion = _mapper.Map<Observacion>(ObservacionDTO);
 
-            _context.Observaciones.Add(Observacion);
-            _context.SaveChanges();
+                _context.Observaciones.Add(Observacion);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Delete(int id)
         {
-            Observacion Observacion = _context.Observaciones.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Observacion Observacion = _context.Observaciones.FirstOrDefault(a => a.Id == id);
 
-            _context.Remove(Observacion);
-            _context.SaveChanges();
+                _context.Remove(Observacion);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<ObservacionDTO>> GetAll()
         {
-            List<Observacion> Observaciones = _context.Observaciones.ToList();
-            ICollection<ObservacionDTO> alertaDTOs = _mapper.Map<ICollection<ObservacionDTO>>(Observaciones);
+            try
+            {
+                List<Observacion> Observaciones = _context.Observaciones.ToList();
+                ICollection<ObservacionDTO> alertaDTOs = _mapper.Map<ICollection<ObservacionDTO>>(Observaciones);
 
-            return alertaDTOs;
+                return alertaDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ObservacionDTO> GetById(int id)
         {
-            Observacion Observacion = _context.Observaciones.FirstOrDefault(a => a.Id == id);
-            ObservacionDTO ObservacionDTO = _mapper.Map<ObservacionDTO>(Observacion);
+            try
+            {
+                Observacion Observacion = _context.Observaciones.FirstOrDefault(a => a.Id == id);
+                ObservacionDTO ObservacionDTO = _mapper.Map<ObservacionDTO>(Observacion);
 
-            return ObservacionDTO;
+                return ObservacionDTO;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Update(int id, ObservacionDTO ObservacionDTO)
         {
-            Observacion Observacion = _context.Observaciones.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Observacion Observacion = _context.Observaciones.FirstOrDefault(a => a.Id == id);
 
-            Observacion.Id = ObservacionDTO.Id;
-            Observacion.Idterrario = ObservacionDTO.Idterrario;
-            Observacion.Fecha = ObservacionDTO.Fecha;
-            Observacion.Texto = ObservacionDTO.Texto;
+                Observacion.Id = ObservacionDTO.Id;
+                Observacion.Idterrario = ObservacionDTO.Idterrario;
+                Observacion.Fecha = ObservacionDTO.Fecha;
+                Observacion.Texto = ObservacionDTO.Texto;
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

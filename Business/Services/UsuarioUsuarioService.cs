@@ -20,41 +20,81 @@ namespace Business.Services
         #region CRUD
         public async void Create(UsuarioUsuarioDTO UsuarioUsuarioDTO)
         {
-            UsuarioUsuario UsuarioUsuario = _mapper.Map<UsuarioUsuario>(UsuarioUsuarioDTO);
+            try
+            {
+                UsuarioUsuario UsuarioUsuario = _mapper.Map<UsuarioUsuario>(UsuarioUsuarioDTO);
 
-            _context.UsuarioUsuarios.Add(UsuarioUsuario);
-            _context.SaveChanges();
+                _context.UsuarioUsuarios.Add(UsuarioUsuario);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public async Task<ICollection<UsuarioUsuarioDTO>> GetAll()
         {
-            List<UsuarioUsuario> UsuarioUsuarios = _context.UsuarioUsuarios.ToList();
-            ICollection<UsuarioUsuarioDTO> alertaDTOs = _mapper.Map<ICollection<UsuarioUsuarioDTO>>(UsuarioUsuarios);
+            try
+            {
+                List<UsuarioUsuario> UsuarioUsuarios = _context.UsuarioUsuarios.ToList();
+                ICollection<UsuarioUsuarioDTO> alertaDTOs = _mapper.Map<ICollection<UsuarioUsuarioDTO>>(UsuarioUsuarios);
 
-            return alertaDTOs;
+                return alertaDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public async Task<UsuarioUsuarioDTO> GetById(int id)
         {
-            UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
-            UsuarioUsuarioDTO UsuarioUsuarioDTO = _mapper.Map<UsuarioUsuarioDTO>(UsuarioUsuario);
+            try
+            {
+                UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
+                UsuarioUsuarioDTO UsuarioUsuarioDTO = _mapper.Map<UsuarioUsuarioDTO>(UsuarioUsuario);
 
-            return UsuarioUsuarioDTO;
+                return UsuarioUsuarioDTO;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public async void Update(int id, UsuarioUsuarioDTO UsuarioUsuarioDTO)
         {
-            UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
+            try
+            {
+                UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
 
-            UsuarioUsuario.Idusuario = UsuarioUsuarioDTO.Idusuario;
-            UsuarioUsuario.Idcontacto = UsuarioUsuarioDTO.Idcontacto;
-            UsuarioUsuario.FechaContacto = UsuarioUsuarioDTO.FechaContacto;
+                UsuarioUsuario.Idusuario = UsuarioUsuarioDTO.Idusuario;
+                UsuarioUsuario.Idcontacto = UsuarioUsuarioDTO.Idcontacto;
+                UsuarioUsuario.FechaContacto = UsuarioUsuarioDTO.FechaContacto;
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         public async void Delete(int id)
         {
-            UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
+            try
+            {
+                UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
 
-            _context.Remove(UsuarioUsuario);
-            _context.SaveChanges();
+                _context.Remove(UsuarioUsuario);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
         #endregion
 

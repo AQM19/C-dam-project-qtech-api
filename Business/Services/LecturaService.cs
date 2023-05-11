@@ -25,48 +25,88 @@ namespace Business.Services
 
         public async void Create(LecturaDTO DatoDTO)
         {
-            Lectura Dato = _mapper.Map<Lectura>(DatoDTO);
+            try
+            {
+                Lectura Dato = _mapper.Map<Lectura>(DatoDTO);
 
-            _context.Datos.Add(Dato);
-            _context.SaveChanges();
+                _context.Datos.Add(Dato);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Delete(int id)
         {
-            Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
 
-            _context.Remove(Dato);
-            _context.SaveChanges();
+                _context.Remove(Dato);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<LecturaDTO>> GetAll()
         {
-            List<Lectura> Datos = _context.Datos.ToList();
-            ICollection<LecturaDTO> alertaDTOs = _mapper.Map<ICollection<LecturaDTO>>(Datos);
+            try
+            {
+                List<Lectura> Datos = _context.Datos.ToList();
+                ICollection<LecturaDTO> alertaDTOs = _mapper.Map<ICollection<LecturaDTO>>(Datos);
 
-            return alertaDTOs;
+                return alertaDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<LecturaDTO> GetById(int id)
         {
-            Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
-            LecturaDTO DatoDTO = _mapper.Map<LecturaDTO>(Dato);
+            try
+            {
+                Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+                LecturaDTO DatoDTO = _mapper.Map<LecturaDTO>(Dato);
 
-            return DatoDTO;
+                return DatoDTO;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Update(int id, LecturaDTO DatoDTO)
         {
-            Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
 
-            Dato.Id = DatoDTO.Id;
-            Dato.Idterrario = DatoDTO.Idterrario;
-            Dato.Fecha = DatoDTO.Fecha;
-            Dato.Temperatura = DatoDTO.Temperatura;
-            Dato.Humedad = DatoDTO.Humedad;
-            Dato.Luz = DatoDTO.Luz;
+                Dato.Id = DatoDTO.Id;
+                Dato.Idterrario = DatoDTO.Idterrario;
+                Dato.Fecha = DatoDTO.Fecha;
+                Dato.Temperatura = DatoDTO.Temperatura;
+                Dato.Humedad = DatoDTO.Humedad;
+                Dato.Luz = DatoDTO.Luz;
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

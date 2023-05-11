@@ -19,54 +19,102 @@ namespace Business.Services
 
         public async void Create(LogroDTO LogroDTO)
         {
-            Logro Logro = _mapper.Map<Logro>(LogroDTO);
+            try
+            {
+                Logro Logro = _mapper.Map<Logro>(LogroDTO);
 
-            _context.Logros.Add(Logro);
-            _context.SaveChanges();
+                _context.Logros.Add(Logro);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Delete(int id)
         {
-            Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);
 
-            _context.Remove(Logro);
-            _context.SaveChanges();
+                _context.Remove(Logro);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<LogroDTO>> GetAll()
         {
-            List<Logro> Logros = _context.Logros.ToList();
-            ICollection<LogroDTO> alertaDTOs = _mapper.Map<ICollection<LogroDTO>>(Logros);
+            try
+            {
+                List<Logro> Logros = _context.Logros.ToList();
+                ICollection<LogroDTO> alertaDTOs = _mapper.Map<ICollection<LogroDTO>>(Logros);
 
-            return alertaDTOs;
+                return alertaDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<LogroDTO> GetById(int id)
         {
-            Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);
-            LogroDTO LogroDTO = _mapper.Map<LogroDTO>(Logro);
+            try
+            {
+                Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);
+                LogroDTO LogroDTO = _mapper.Map<LogroDTO>(Logro);
 
-            return LogroDTO;
+                return LogroDTO;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<LogroDTO>> GetLogrosUsuario(long id)
         {
-            ICollection<Logro> logros = _context.Logros.Where(x => x.UsuarioLogros.Any(c => c.Idusuario == id)).ToList();
-            ICollection<LogroDTO> logroDTOs = _mapper.Map<ICollection<LogroDTO>>(logros);
-            return logroDTOs;
+            try
+            {
+                ICollection<Logro> logros = _context.Logros.Where(x => x.UsuarioLogros.Any(c => c.Idusuario == id)).ToList();
+                ICollection<LogroDTO> logroDTOs = _mapper.Map<ICollection<LogroDTO>>(logros);
+                return logroDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Update(int id, LogroDTO LogroDTO)
         {
-            Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Logro Logro = _context.Logros.FirstOrDefault(a => a.Id == id);
 
-            Logro.Id = LogroDTO.Id;
-            Logro.Titulo = LogroDTO.Titulo;
-            Logro.Descripcion = LogroDTO.Descripcion;
-            Logro.Icono = LogroDTO.Icono;
-            Logro.Disponible = LogroDTO.Disponible;
+                Logro.Id = LogroDTO.Id;
+                Logro.Titulo = LogroDTO.Titulo;
+                Logro.Descripcion = LogroDTO.Descripcion;
+                Logro.Icono = LogroDTO.Icono;
+                Logro.Disponible = LogroDTO.Disponible;
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

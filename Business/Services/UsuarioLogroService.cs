@@ -19,45 +19,85 @@ namespace Business.Services
 
         public async void Create(UsuarioLogroDTO UsuarioLogroDTO)
         {
-            UsuarioLogro UsuarioLogro = _mapper.Map<UsuarioLogro>(UsuarioLogroDTO);
+            try
+            {
+                UsuarioLogro UsuarioLogro = _mapper.Map<UsuarioLogro>(UsuarioLogroDTO);
 
-            _context.UsuarioLogros.Add(UsuarioLogro);
-            _context.SaveChanges();
+                _context.UsuarioLogros.Add(UsuarioLogro);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Delete(long id)
         {
-            UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
+            try
+            {
+                UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
 
-            _context.Remove(UsuarioLogro);
-            _context.SaveChanges();
+                _context.Remove(UsuarioLogro);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<UsuarioLogroDTO>> GetAll()
         {
-            List<UsuarioLogro> UsuarioLogros = _context.UsuarioLogros.ToList();
-            ICollection<UsuarioLogroDTO> alertaDTOs = _mapper.Map<ICollection<UsuarioLogroDTO>>(UsuarioLogros);
+            try
+            {
+                List<UsuarioLogro> UsuarioLogros = _context.UsuarioLogros.ToList();
+                ICollection<UsuarioLogroDTO> alertaDTOs = _mapper.Map<ICollection<UsuarioLogroDTO>>(UsuarioLogros);
 
-            return alertaDTOs;
+                return alertaDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<UsuarioLogroDTO>> GetById(long id)
         {
-            List<UsuarioLogro> UsuarioLogro = _context.UsuarioLogros.Where(x => x.Idusuario == id).ToList();
-            ICollection<UsuarioLogroDTO> UsuarioLogroDTO = _mapper.Map<ICollection<UsuarioLogroDTO>>(UsuarioLogro);
+            try
+            {
+                List<UsuarioLogro> UsuarioLogro = _context.UsuarioLogros.Where(x => x.Idusuario == id).ToList();
+                ICollection<UsuarioLogroDTO> UsuarioLogroDTO = _mapper.Map<ICollection<UsuarioLogroDTO>>(UsuarioLogro);
 
-            return UsuarioLogroDTO;
+                return UsuarioLogroDTO;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Update(long id, UsuarioLogroDTO UsuarioLogroDTO)
         {
-            UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
+            try
+            {
+                UsuarioLogro UsuarioLogro = _context.UsuarioLogros.FirstOrDefault(a => a.Idusuario == id);
 
-            UsuarioLogro.Idusuario = UsuarioLogroDTO.Idusuario;
-            UsuarioLogro.Idlogro = UsuarioLogroDTO.Idlogro;
-            UsuarioLogro.FechaAdquisicion = UsuarioLogroDTO.FechaAdquisicion;
+                UsuarioLogro.Idusuario = UsuarioLogroDTO.Idusuario;
+                UsuarioLogro.Idlogro = UsuarioLogroDTO.Idlogro;
+                UsuarioLogro.FechaAdquisicion = UsuarioLogroDTO.FechaAdquisicion;
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

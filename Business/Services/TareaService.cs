@@ -24,49 +24,89 @@ namespace Business.Services
 
         public async void Create(TareaDTO TareaDTO)
         {
-            Tarea Tarea = _mapper.Map<Tarea>(TareaDTO);
+            try
+            {
+                Tarea Tarea = _mapper.Map<Tarea>(TareaDTO);
 
-            _context.Tareas.Add(Tarea);
-            _context.SaveChanges();
+                _context.Tareas.Add(Tarea);
+                _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Delete(int id)
         {
-            Tarea Tarea = _context.Tareas.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Tarea Tarea = _context.Tareas.FirstOrDefault(a => a.Id == id);
 
-            _context.Remove(Tarea);
-            _context.SaveChanges();
+                _context.Remove(Tarea);
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<ICollection<TareaDTO>> GetAll()
         {
-            List<Tarea> Tareas = _context.Tareas.ToList();
-            ICollection<TareaDTO> alertaDTOs = _mapper.Map<ICollection<TareaDTO>>(Tareas);
+            try
+            {
+                List<Tarea> Tareas = _context.Tareas.ToList();
+                ICollection<TareaDTO> alertaDTOs = _mapper.Map<ICollection<TareaDTO>>(Tareas);
 
-            return alertaDTOs;
+                return alertaDTOs;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async Task<TareaDTO> GetById(int id)
         {
-            Tarea Tarea = _context.Tareas.FirstOrDefault(a => a.Id == id);
-            TareaDTO TareaDTO = _mapper.Map<TareaDTO>(Tarea);
+            try
+            {
+                Tarea Tarea = _context.Tareas.FirstOrDefault(a => a.Id == id);
+                TareaDTO TareaDTO = _mapper.Map<TareaDTO>(Tarea);
 
-            return TareaDTO;
+                return TareaDTO;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public async void Update(int id, TareaDTO TareaDTO)
         {
-            Tarea Tarea = _context.Tareas.FirstOrDefault(a => a.Id == id);
+            try
+            {
+                Tarea Tarea = _context.Tareas.FirstOrDefault(a => a.Id == id);
 
-            Tarea.Id = TareaDTO.Id;
-            Tarea.Idterrario = TareaDTO.Idterrario;
-            Tarea.FechaCreacion = TareaDTO.FechaCreacion;
-            Tarea.FechaResolucion = TareaDTO.FechaResolucion;
-            Tarea.Titulo = TareaDTO.Titulo;
-            Tarea.Descripcion = TareaDTO.Descripcion;
-            Tarea.Estado = TareaDTO.Estado;
+                Tarea.Id = TareaDTO.Id;
+                Tarea.Idterrario = TareaDTO.Idterrario;
+                Tarea.FechaCreacion = TareaDTO.FechaCreacion;
+                Tarea.FechaResolucion = TareaDTO.FechaResolucion;
+                Tarea.Titulo = TareaDTO.Titulo;
+                Tarea.Descripcion = TareaDTO.Descripcion;
+                Tarea.Estado = TareaDTO.Estado;
 
-            _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
