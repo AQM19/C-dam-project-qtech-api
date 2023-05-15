@@ -13,7 +13,9 @@ public partial class Logro
 
     public string Icono { get; set; } = null!;
 
-    public sbyte Disponible { get; set; }
+    public DateTime? Fechadesde { get; set; } = null;
+
+    public DateTime? Fechahasta { get; set; } = null!;
 
     public virtual ICollection<UsuarioLogro> UsuarioLogros { get; } = new List<UsuarioLogro>();
 }

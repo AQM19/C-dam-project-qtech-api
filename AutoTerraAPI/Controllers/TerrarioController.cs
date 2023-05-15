@@ -30,6 +30,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
+        [HttpGet("terrarios/usuario/{id}")]
+        public async Task<IActionResult> GetTerrariosDeUsuario(long id)
+        {
+            ICollection<TerrarioDTO> terrarioDTOs = await _terrarioService.GetTerrariosDeUsusario(id);
+            ICollection<TerrarioVM> terrarioVMs = _mapper.Map<ICollection<TerrarioVM>>(terrarioDTOs);
+
+            return Ok(terrarioVMs);
+        }
+
         [HttpGet("terrarios/{id}")]
         public async Task<IActionResult> GetById(int id)
         {

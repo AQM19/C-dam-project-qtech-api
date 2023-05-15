@@ -137,9 +137,12 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.Descripcion)
                 .HasMaxLength(250)
                 .HasColumnName("descripcion");
-            entity.Property(e => e.Disponible)
-                .HasDefaultValueSql("'1'")
-                .HasColumnName("disponible");
+            entity.Property(e => e.Fechadesde)
+                .HasColumnType("datetime")
+                .HasColumnName("fechadesde");
+            entity.Property(e => e.Fechahasta)
+                .HasColumnType("datetime")
+                .HasColumnName("fechahasta");
             entity.Property(e => e.Icono)
                 .HasMaxLength(150)
                 .HasColumnName("icono");

@@ -106,7 +106,8 @@ namespace Business.Services
                 Logro.Titulo = LogroDTO.Titulo;
                 Logro.Descripcion = LogroDTO.Descripcion;
                 Logro.Icono = LogroDTO.Icono;
-                Logro.Disponible = LogroDTO.Disponible;
+                Logro.Fechadesde = LogroDTO.Fechadesde;
+                Logro.Fechahasta = LogroDTO.Fechahasta;
 
                 await _context.SaveChangesAsync();
 

@@ -150,6 +150,19 @@ namespace Business.Services
             }
         }
 
+        public async Task<ICollection<TerrarioDTO>> GetTerrariosDeUsusario(long id)
+        {
+            try
+            {
+                ICollection<Terrario> terrarios = _context.Terrarios.Where(x => x.Idusuario == id).ToList();
+                return _mapper.Map<ICollection<TerrarioDTO>>(terrarios);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #endregion
     }
 }

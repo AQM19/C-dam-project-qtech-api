@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTerraAPI", "AutoTerraAPI\AutoTerraAPI.csproj", "{7D141BD0-C8D3-4496-83B8-D3D8DF1233BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoTerraAPI", "AutoTerraAPI\AutoTerraAPI.csproj", "{7D141BD0-C8D3-4496-83B8-D3D8DF1233BC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.PL", "1.PL", "{447C760F-67E7-4351-B139-0920181F8D35}"
 EndProject
@@ -11,9 +11,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.BLL", "2.BLL", "{4A6173C1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.DAL", "3.DAL", "{B11D7FD9-DE83-4045-8370-FA62B87DEF2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Business.csproj", "{5FC3B5E9-EC8C-4773-BA1F-B405DF2CB33B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{5FC3B5E9-EC8C-4773-BA1F-B405DF2CB33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{895B2C39-D257-468F-8EE6-D2431F27FDA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{895B2C39-D257-468F-8EE6-D2431F27FDA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,5 +12,6 @@ namespace Business.Interfaces
 
         Task<ICollection<TerrarioDTO>> GetTerrariosSocial(long id);
         Task<float> GetPuntuacionTerrario(long id);
+        Task<ICollection<TerrarioDTO>> GetTerrariosDeUsusario(long id);
     }
 }

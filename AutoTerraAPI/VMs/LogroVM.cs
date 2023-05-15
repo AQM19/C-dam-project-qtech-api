@@ -12,5 +12,6 @@ public partial class LogroVM
 
     public string Icono { get; set; } = null!;
 
-    public sbyte Disponible { get; set; }
+    public DateTime? Fechadesde { get; set; } = null;
+    public DateTime? Fechahasta { get; set; } = null;
 }
