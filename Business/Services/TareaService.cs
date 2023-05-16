@@ -62,7 +62,21 @@ namespace Business.Services
                 ICollection<TareaDTO> alertaDTOs = _mapper.Map<ICollection<TareaDTO>>(Tareas);
 
                 return alertaDTOs;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
+        public async Task<ICollection<TareaDTO>> GetAllByTerra(long id)
+        {
+            try
+            {
+                List<Tarea> tareas = _context.Tareas.Where(x => x.Idterrario == id).ToList();
+                ICollection<TareaDTO> tareaDTOs = _mapper.Map<ICollection<TareaDTO>>(tareas);
+
+                return tareaDTOs;
             }
             catch (Exception)
             {

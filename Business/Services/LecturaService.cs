@@ -29,7 +29,7 @@ namespace Business.Services
             {
                 Lectura Dato = _mapper.Map<Lectura>(DatoDTO);
 
-                _context.Datos.Add(Dato);
+                _context.Lecturas.Add(Dato);
                 await _context.SaveChangesAsync();
 
             }
@@ -43,7 +43,7 @@ namespace Business.Services
         {
             try
             {
-                Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+                Lectura Dato = _context.Lecturas.FirstOrDefault(a => a.Id == id);
 
                 _context.Remove(Dato);
                 await _context.SaveChangesAsync();
@@ -59,7 +59,7 @@ namespace Business.Services
         {
             try
             {
-                List<Lectura> Datos = _context.Datos.ToList();
+                List<Lectura> Datos = _context.Lecturas.ToList();
                 ICollection<LecturaDTO> alertaDTOs = _mapper.Map<ICollection<LecturaDTO>>(Datos);
 
                 return alertaDTOs;
@@ -75,7 +75,7 @@ namespace Business.Services
         {
             try
             {
-                Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+                Lectura Dato = _context.Lecturas.FirstOrDefault(a => a.Id == id);
                 LecturaDTO DatoDTO = _mapper.Map<LecturaDTO>(Dato);
 
                 return DatoDTO;
@@ -91,7 +91,7 @@ namespace Business.Services
         {
             try
             {
-                Lectura Dato = _context.Datos.FirstOrDefault(a => a.Id == id);
+                Lectura Dato = _context.Lecturas.FirstOrDefault(a => a.Id == id);
 
                 Dato.Id = DatoDTO.Id;
                 Dato.Idterrario = DatoDTO.Idterrario;

@@ -3,7 +3,7 @@ using AutoTerraApi.VMs;
 using Business.DTOs;
 using Business.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-
+using Org.BouncyCastle.Asn1.Mozilla;
 
 namespace AutoTerraAPI.Controllers
 {
@@ -20,7 +20,7 @@ namespace AutoTerraAPI.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("observacions")]
+        [HttpGet("observaciones")]
         public async Task<IActionResult> GetAll()
         {
             ICollection<ObservacionDTO> userDTOs = await _observacionService.GetAll();
@@ -29,7 +29,16 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
-        [HttpGet("observacions/{id}")]
+        [HttpGet("observaviones/terrario/{id}")]
+        public async Task<IActionResult> GetAllByTerra(long id)
+        {
+            ICollection<ObservacionDTO> observacionDTO = await _observacionService.GetAllByTerra(id);
+            ICollection<ObservacionVM> observacionVMs = _mapper.Map<ICollection<ObservacionVM>>(observacionDTO);
+
+            return Ok(observacionVMs);
+        }
+
+        [HttpGet("observaciones/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             ObservacionDTO ObservacionDTO = await _observacionService.GetById(id);
@@ -38,7 +47,7 @@ namespace AutoTerraAPI.Controllers
             return Ok(ObservacionVM);
         }
 
-        [HttpPost("observacions")]
+        [HttpPost("observaciones")]
         public async Task<IActionResult> Create(ObservacionVM ObservacionVM)
         {
             ObservacionDTO ObservacionDTO = _mapper.Map<ObservacionDTO>(ObservacionVM);
@@ -47,7 +56,7 @@ namespace AutoTerraAPI.Controllers
             return Ok();
         }
 
-        [HttpPut("observacions/{id}")]
+        [HttpPut("observaciones/{id}")]
         public async Task<IActionResult> Update(int id, ObservacionVM ObservacionVM)
         {
             ObservacionDTO ObservacionDTO = _mapper.Map<ObservacionDTO>(ObservacionVM);
@@ -56,7 +65,7 @@ namespace AutoTerraAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete("observacions/{id}")]
+        [HttpDelete("observaciones/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             _observacionService.Delete(id);

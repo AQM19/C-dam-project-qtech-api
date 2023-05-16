@@ -9,5 +9,7 @@ namespace Business.Interfaces
         void Create(ObservacionDTO observacionDTO);
         void Update(int id, ObservacionDTO observacionDTO);
         void Delete(int id);
+
+        Task<ICollection<ObservacionDTO>> GetAllByTerra(long id);
     }
 }

@@ -14,7 +14,7 @@ public partial class QtechContext : DbContext
     {
     }
 
-    public virtual DbSet<Lectura> Datos { get; set; }
+    public virtual DbSet<Lectura> Lecturas { get; set; }
 
     public virtual DbSet<EspecieTerrario> EspecieTerrarios { get; set; }
 
@@ -46,7 +46,7 @@ public partial class QtechContext : DbContext
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
 
-            entity.ToTable("datos");
+            entity.ToTable("lecturas");
 
             entity.HasIndex(e => e.Idterrario, "fk_datos_idx");
 

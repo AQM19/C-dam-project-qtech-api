@@ -70,6 +70,21 @@ namespace Business.Services
             }
         }
 
+        public async Task<ICollection<ObservacionDTO>> GetAllByTerra(long id)
+        {
+            try
+            {
+                List<Observacion> observaciones = _context.Observaciones.Where(x => x.Idterrario == id).ToList();
+                List<ObservacionDTO> observacionDTOs = _mapper.Map<List<ObservacionDTO>>(observaciones);
+
+                return observacionDTOs;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async Task<ObservacionDTO> GetById(int id)
         {
             try
