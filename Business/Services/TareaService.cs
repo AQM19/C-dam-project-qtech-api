@@ -73,7 +73,7 @@ namespace Business.Services
         {
             try
             {
-                List<Tarea> tareas = _context.Tareas.Where(x => x.Idterrario == id).ToList();
+                List<Tarea> tareas = _context.Tareas.Where(x => x.Idterrario == id && x.Estado != "Realizada" && x.Estado != "Cancelada").ToList();
                 ICollection<TareaDTO> tareaDTOs = _mapper.Map<ICollection<TareaDTO>>(tareas);
 
                 return tareaDTOs;
