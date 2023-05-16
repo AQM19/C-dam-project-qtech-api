@@ -30,6 +30,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
+        [HttpGet("tareas/terrario/{id}")]
+        public async Task<IActionResult> GetAllByTerra(long id)
+        {
+            ICollection<TareaDTO> tareaDTOs = await _tareaService.GetAllByTerra(id);
+            ICollection<TareaVM> tareaVMs = _mapper.Map<ICollection<TareaVM>>(tareaDTOs);
+
+            return Ok(tareaVMs);
+        }
+
         [HttpGet("tareas/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
