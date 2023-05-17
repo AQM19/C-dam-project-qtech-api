@@ -48,6 +48,13 @@ namespace AutoTerraAPI.Controllers
             return Ok(notificacionVMs);
         }
 
+        [HttpGet("notificaciones/pendientes/{id}")]
+        public async Task<IActionResult> GetPendingNotifications(long id)
+        {
+            bool pendingNotifications = await _notificacionService.PendingNotifications(id);
+            return Ok(pendingNotifications);
+        }
+
         [HttpPost("notificacions")]
         public async Task<IActionResult> Create(NotificacionVM NotificacionVM)
         {

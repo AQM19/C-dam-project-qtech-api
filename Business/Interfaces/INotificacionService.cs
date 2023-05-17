@@ -11,5 +11,6 @@ namespace Business.Interfaces
         void Delete(int id);
 
         Task<ICollection<NotificacionDTO>> GetAllByUserId(long userId);
+        Task<bool> PendingNotifications(long userId);
     }
 }

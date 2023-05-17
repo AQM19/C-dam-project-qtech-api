@@ -102,6 +102,18 @@ namespace Business.Services
             }
         }
 
+        public async Task<bool> PendingNotifications(long userId)
+        {
+            try
+            {
+                return _context.Notificaciones.Any(x => x.Vista == 0 && x.Terrario.Idusuario == userId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async void Update(int id, NotificacionDTO NotificacionDTO)
         {
             try
