@@ -87,6 +87,19 @@ namespace Business.Services
             }
         }
 
+        public async Task<LecturaDTO> GetLecturaActual(long id)
+        {
+            try
+            {
+                Lectura data = _context.Lecturas.OrderByDescending(x => x.Fecha).FirstOrDefault(x => x.Idterrario == id);
+                return _mapper.Map<LecturaDTO>(data);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async void Update(int id, LecturaDTO DatoDTO)
         {
             try

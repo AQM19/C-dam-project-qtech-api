@@ -30,6 +30,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
+        [HttpGet("lecturas/terrario/{id}")]
+        public async Task<IActionResult> GetLecturaActual(long id)
+        {
+            LecturaDTO lecturaDTO = await _datoService.GetLecturaActual(id);
+            LecturaVM lecturaVM = _mapper.Map<LecturaVM>(lecturaDTO);
+
+            return Ok(lecturaVM);
+        }
+
         [HttpGet("datos/{id}")]
         public async Task<IActionResult> GetById(int id)
         {

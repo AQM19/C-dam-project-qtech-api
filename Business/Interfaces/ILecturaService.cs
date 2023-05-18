@@ -9,5 +9,7 @@ namespace Business.Interfaces
         void Create(LecturaDTO datoDTO);
         void Update(int id, LecturaDTO datoDTO);
         void Delete(int id);
+
+        Task<LecturaDTO> GetLecturaActual(long id);
     }
 }
