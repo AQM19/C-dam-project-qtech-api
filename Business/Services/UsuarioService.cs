@@ -72,21 +72,23 @@ namespace Business.Services
             {
                 Usuario Usuario = _context.Usuarios.FirstOrDefault(a => a.Id == id && a.Borrado == 0);
 
-                Usuario.Id = UsuarioDTO.Id;
-                Usuario.Nombre = UsuarioDTO.Nombre;
-                Usuario.NombreUsuario = UsuarioDTO.NombreUsuario;
-                Usuario.Contrasena = UsuarioDTO.Contrasena;
-                Usuario.Apellido1 = UsuarioDTO.Apellido1;
-                Usuario.Apellido2 = UsuarioDTO.Apellido2;
-                Usuario.FechaNacimiento = UsuarioDTO.FechaNacimiento;
-                Usuario.Email = UsuarioDTO.Email;
-                Usuario.Telefono = UsuarioDTO.Telefono;
-                Usuario.FotoPerfil = UsuarioDTO.FotoPerfil;
-                Usuario.Salt = UsuarioDTO.Salt;
-                Usuario.Perfil = UsuarioDTO.Perfil;
+                if (Usuario != null)
+                {
+                    Usuario.Id = UsuarioDTO.Id;
+                    Usuario.Nombre = UsuarioDTO.Nombre;
+                    Usuario.NombreUsuario = UsuarioDTO.NombreUsuario;
+                    Usuario.Contrasena = UsuarioDTO.Contrasena;
+                    Usuario.Apellido1 = UsuarioDTO.Apellido1;
+                    Usuario.Apellido2 = UsuarioDTO.Apellido2;
+                    Usuario.FechaNacimiento = UsuarioDTO.FechaNacimiento;
+                    Usuario.Email = UsuarioDTO.Email;
+                    Usuario.Telefono = UsuarioDTO.Telefono;
+                    Usuario.FotoPerfil = UsuarioDTO.FotoPerfil;
+                    Usuario.Salt = UsuarioDTO.Salt;
+                    Usuario.Perfil = UsuarioDTO.Perfil;
 
-                await _context.SaveChangesAsync();
-
+                    _context.SaveChanges();
+                }
             }
             catch (Exception)
             {
