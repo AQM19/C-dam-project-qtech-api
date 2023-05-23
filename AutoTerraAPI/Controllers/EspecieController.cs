@@ -46,8 +46,8 @@ namespace AutoTerraAPI.Controllers
             return Ok(especieVMs);
         }
 
-        [HttpPost("especies/not-in")]
-        public async Task<IActionResult> GetEspeciesNotInTerrario([FromBody] ICollection<EspecieVM> lista)
+        [HttpPost("especies/posibles")]
+        public async Task<IActionResult> GetEspeciesPosibles([FromBody] ICollection<EspecieVM> lista)
         {
             ICollection<EspecieDTO> especieDTOs = await _especieService.GetEspeciesPosibles(_mapper.Map<ICollection<EspecieDTO>>(lista));
             return Ok(especieDTOs);

@@ -142,30 +142,42 @@ namespace Business.Services
 
         public async Task<ICollection<EspecieDTO>> GetEspeciesPosibles(ICollection<EspecieDTO> especieDTOs)
         {
-
             try
             {
                 ICollection<Especie> especies = _mapper.Map<ICollection<Especie>>(especieDTOs);
+
+                float tempMax = especies.Min(y => y.TemperaturaMaxima);
+                float tempMin = especies.Min(y => y.TemperaturaMinima);
+                float? tempHibMax = especies.Min(y => y.TemperaturaHibMaxima);
+                float? tempHibMin = especies.Min(y => y.TemperaturaHibMinima);
+                float humMax = especies.Min(y => y.HumedadMaxima);
+                float humMin = especies.Min(y => y.HumedadMinima);
+                int luz = especies.Min(y => y.HorasLuz);
+                int? luzHib = especies.Min(y => y.HorasLuzHib);
+
+                ICollection<long> especiesIds = especies.Select(e => e.Id).ToList();
+
                 ICollection<Especie> especiesPosibles = _context.Especies
                     .Where(x =>
-                    //x.EspecieTerrarios.Any(y => !especies.Contains(y.Especie)) &&
-                    x.TemperaturaMaxima <= especies.Min(y => y.TemperaturaMaxima) &&
-                    x.TemperaturaMaxima >= especies.Min(y => y.TemperaturaMinima) &&
-                    x.TemperaturaMinima >= especies.Max(y => y.TemperaturaMinima) &&
-                    x.TemperaturaMinima <= especies.Max(y => y.TemperaturaMaxima) &&
-                    x.HumedadMaxima <= especies.Min(y => y.HumedadMaxima) &&
-                    x.HumedadMinima >= especies.Max(y => y.HumedadMinima) &&
-                    x.HorasLuz <= especies.Min(y => y.HorasLuz) &&
-                    x.TemperaturaHibMaxima <= especies.Min(y => y.TemperaturaHibMaxima) &&
-                    x.TemperaturaHibMaxima >= especies.Min(y => y.TemperaturaHibMinima) &&
-                    x.TemperaturaHibMinima >= especies.Max(y => y.TemperaturaHibMinima) &&
-                    x.TemperaturaHibMinima <= especies.Max(y => y.TemperaturaHibMaxima) &&
-                    x.HorasLuzHib <= especies.Min(y => y.HorasLuzHib)
-                    ).ToList();
+                        !especiesIds.Contains(x.Id) &&
+                        x.TemperaturaMaxima <= tempMax &&
+                        x.TemperaturaMaxima >= tempMin &&
+                        x.TemperaturaMinima <= tempMax &&
+                        x.TemperaturaMinima >= tempMin &&
+                        x.HumedadMaxima <= humMax &&
+                        x.HumedadMinima >= humMin &&
+                        x.HorasLuz <= luz &&
+                        x.TemperaturaHibMaxima <= tempHibMax &&
+                        x.TemperaturaHibMaxima >= tempHibMin &&
+                        x.TemperaturaHibMinima <= tempHibMax &&
+                        x.TemperaturaHibMinima >= tempHibMin &&
+                        (!luzHib.HasValue || x.HorasLuzHib <= luzHib)
+                    )
+                    .ToList();
+
                 ICollection<EspecieDTO> result = _mapper.Map<ICollection<EspecieDTO>>(especiesPosibles);
 
                 return result;
-
             }
             catch (Exception)
             {

@@ -48,11 +48,11 @@ namespace Business.Services
                 throw;
             }
         }
-        public async Task<VisitaDTO> GetById(int id)
+        public async Task<VisitaDTO> GetById(long idTerrario, long idUsuario)
         {
             try
             {
-                Visita Visita = _context.Visitas.FirstOrDefault(a => a.Id == id);
+                Visita Visita = _context.Visitas.FirstOrDefault(a => a.Idterrario == idTerrario && a.Idusuario == idUsuario);
                 VisitaDTO VisitaDTO = _mapper.Map<VisitaDTO>(Visita);
 
                 return VisitaDTO;

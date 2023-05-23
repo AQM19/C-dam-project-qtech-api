@@ -30,10 +30,10 @@ namespace AutoTerraAPI.Controllers
             return Ok(userVMs);
         }
 
-        [HttpGet("visitas/{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("visitas/{idTerrario}/{idUsuario}")]
+        public async Task<IActionResult> GetById(long idTerrario, long idUsuario)
         {
-            VisitaDTO VisitaDTO = await _visitaService.GetById(id);
+            VisitaDTO VisitaDTO = await _visitaService.GetById(idTerrario, idUsuario);
             VisitaVM VisitaVM = _mapper.Map<VisitaVM>(VisitaDTO);
 
             return Ok(VisitaVM);
