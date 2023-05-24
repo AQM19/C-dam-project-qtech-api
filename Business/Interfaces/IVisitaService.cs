@@ -6,7 +6,7 @@ namespace Business.Interfaces
     {
         Task<ICollection<VisitaDTO>> GetAll();
         Task<VisitaDTO> GetById(long idTerrario, long idUsuario);
-        void Create(VisitaDTO visitaDTO);
+        Task<VisitaDTO> Create(VisitaDTO visitaDTO);
         void Update(int id, VisitaDTO visitaDTO);
         void Delete(int id);
 

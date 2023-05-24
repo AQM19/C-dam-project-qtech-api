@@ -54,7 +54,7 @@ namespace AutoTerraAPI.Controllers
             VisitaDTO VisitaDTO = _mapper.Map<VisitaDTO>(VisitaVM);
 
             _visitaService.Create(VisitaDTO);
-            return Ok();
+            return Ok(VisitaDTO);
         }
 
         [HttpPut("visitas/{id}")]

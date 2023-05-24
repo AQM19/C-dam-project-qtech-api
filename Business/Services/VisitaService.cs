@@ -19,7 +19,7 @@ namespace Business.Services
 
 
         #region CRUD
-        public async void Create(VisitaDTO VisitaDTO)
+        public async Task<VisitaDTO> Create(VisitaDTO VisitaDTO)
         {
             try
             {
@@ -27,6 +27,7 @@ namespace Business.Services
 
                 _context.Visitas.Add(Visita);
                 await _context.SaveChangesAsync();
+                return _mapper.Map<VisitaDTO>(Visita);
             }
             catch (Exception)
             {
