@@ -81,15 +81,28 @@ namespace Business.Services
                 throw;
             }
         }
-        public async void Delete(int id)
+        public async void Delete(long idUsuario, long idContacto)
         {
             try
             {
-                UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == id);
+                UsuarioUsuario UsuarioUsuario = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == idUsuario && a.Idcontacto == idContacto);
 
                 _context.Remove(UsuarioUsuario);
                 await _context.SaveChangesAsync();
 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> ComprobarSeguimiento(long idUsuario, long idContacto)
+        {
+            try
+            {
+                UsuarioUsuario result = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == idUsuario && a.Idcontacto == idContacto);
+                return result == null ? false : true;
             }
             catch (Exception)
             {

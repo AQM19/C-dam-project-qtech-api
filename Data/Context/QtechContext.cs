@@ -411,7 +411,6 @@ public partial class QtechContext : DbContext
             entity.Property(e => e.Fecha)
                 .HasColumnType("datetime")
                 .HasColumnName("fecha");
-            entity.Property(e => e.Puntuacion).HasColumnName("puntuacion");
 
             entity.HasOne(d => d.IdterrarioNavigation).WithMany(p => p.Visitas)
                 .HasForeignKey(d => d.Idterrario)

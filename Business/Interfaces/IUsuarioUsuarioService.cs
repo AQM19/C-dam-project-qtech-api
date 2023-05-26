@@ -8,6 +8,7 @@ namespace Business.Interfaces
         Task<UsuarioUsuarioDTO> GetById(int id);
         void Create(UsuarioUsuarioDTO usuarioUsuarioDTO);
         void Update(int id, UsuarioUsuarioDTO usuarioUsuarioDTO);
-        void Delete(int id);
+        void Delete(long idUsuario, long idContacto);
+        Task<bool> ComprobarSeguimiento(long idUsuario, long idContacto);
     }
 }

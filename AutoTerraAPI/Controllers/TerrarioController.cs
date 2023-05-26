@@ -52,13 +52,6 @@ namespace AutoTerraAPI.Controllers
             return Ok(TerrarioVM);
         }
 
-        [HttpGet("terrarios/{id}/puntuacion")]
-        public async Task<IActionResult> GetPuntuacionTerrario(long id)
-        {
-            float result = await _terrarioService.GetPuntuacionTerrario(id);
-            return Ok(result);
-        }
-
         [HttpGet("terrarios-social/{id}")]
         public async Task<IActionResult> GetTerrariosSocial(long id)
         {

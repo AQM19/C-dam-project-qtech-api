@@ -39,7 +39,7 @@ namespace AutoTerraAPI.Controllers
             return Ok(UsuarioUsuarioVM);
         }
 
-        [HttpPost("usuarioUsuarios")]
+        [HttpPost("usuarioUsuarios/follow")]
         public async Task<IActionResult> Create(UsuarioUsuarioVM UsuarioUsuarioVM)
         {
             UsuarioUsuarioDTO UsuarioUsuarioDTO = _mapper.Map<UsuarioUsuarioDTO>(UsuarioUsuarioVM);
@@ -57,10 +57,10 @@ namespace AutoTerraAPI.Controllers
             return Ok();
         }
 
-        [HttpDelete("usuarioUsuarios/{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpDelete("usuarioUsuarios/unfollow/usuario/{idUsuario}/contacto/{idContacto}")]
+        public async Task<IActionResult> Delete(long idUsuario, long idContacto)
         {
-            _usuarioUsuarioService.Delete(id);
+            _usuarioUsuarioService.Delete(idUsuario, idContacto);
             return Ok();
         }
     }

@@ -13,6 +13,4 @@ public partial class VisitaDTO
     public DateTime Fecha { get; set; }
 
     public string? Comentario { get; set; }
-
-    public float Puntuacion { get; set; }
 }

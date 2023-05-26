@@ -195,8 +195,8 @@ namespace Business.Services
         {
             try
             {
-                Usuario usuario = _context.Usuarios.FirstOrDefault(x => x.Id == idusuario && x.UsuarioUsuarioIdusuarioNavigations.Any(c => c.Idusuario == idcontacto));
-                return usuario != null ? true : false;
+                UsuarioUsuario result = _context.UsuarioUsuarios.FirstOrDefault(a => a.Idusuario == idusuario && a.Idcontacto == idcontacto);
+                return result == null ? false : true;
 
             }
             catch (Exception)

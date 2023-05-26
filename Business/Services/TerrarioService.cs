@@ -135,21 +135,6 @@ namespace Business.Services
             }
         }
 
-        public async Task<float> GetPuntuacionTerrario(long id)
-        {
-            try
-            {
-                float? puntuacion = await _context.Terrarios.Where(x => x.Id == id)
-                                              .Select(x => x.Visitas.Any() ? x.Visitas.Average(y => y.Puntuacion) : (float?)null)
-                                              .FirstOrDefaultAsync();
-                return puntuacion ?? 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         public async Task<ICollection<TerrarioDTO>> GetTerrariosDeUsusario(long id)
         {
             try

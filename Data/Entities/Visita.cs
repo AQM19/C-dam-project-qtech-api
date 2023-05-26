@@ -15,8 +15,6 @@ public partial class Visita
 
     public string? Comentario { get; set; }
 
-    public float Puntuacion { get; set; }
-
     public virtual Terrario IdterrarioNavigation { get; set; } = null!;
 
     public virtual Usuario IdusuarioNavigation { get; set; } = null!;

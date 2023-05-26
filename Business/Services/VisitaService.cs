@@ -75,7 +75,6 @@ namespace Business.Services
                 Visita.Idterrario = VisitaDTO.Idterrario;
                 Visita.Fecha = VisitaDTO.Fecha;
                 Visita.Comentario = VisitaDTO.Comentario;
-                Visita.Puntuacion = VisitaDTO.Puntuacion;
 
                 await _context.SaveChangesAsync();
 
