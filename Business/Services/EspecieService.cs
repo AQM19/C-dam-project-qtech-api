@@ -146,6 +146,9 @@ namespace Business.Services
             {
                 ICollection<Especie> especies = _mapper.Map<ICollection<Especie>>(especieDTOs);
 
+                if (especies.Count == 0)
+                    return _mapper.Map<ICollection<EspecieDTO>>(_context.Especies.ToList());
+
                 float tempMax = especies.Min(y => y.TemperaturaMaxima);
                 float tempMin = especies.Min(y => y.TemperaturaMinima);
                 float? tempHibMax = especies.Min(y => y.TemperaturaHibMaxima);
