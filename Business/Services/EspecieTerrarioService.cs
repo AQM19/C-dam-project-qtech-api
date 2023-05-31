@@ -119,7 +119,7 @@ namespace Business.Services
                 {
                     EspecieTerrario et = _context.EspecieTerrarios.FirstOrDefault(x => x.Idespecie == it.Idespecie);
 
-                    if (et == null) // bd no, lista si : crear
+                    if (et != null) // bd no, lista si : crear
                     {
                         _context.EspecieTerrarios.Add(it);
                     }
