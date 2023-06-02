@@ -117,9 +117,9 @@ namespace Business.Services
 
                 foreach (EspecieTerrario it in especieTerrarios)
                 {
-                    EspecieTerrario et = _context.EspecieTerrarios.FirstOrDefault(x => x.Idespecie == it.Idespecie);
+                    EspecieTerrario et = _context.EspecieTerrarios.FirstOrDefault(x => x.Idespecie == it.Idespecie && x.Idterrario == it.Idterrario);
 
-                    if (et != null) // bd no, lista si : crear
+                    if (et == null) // bd no, lista si : crear
                     {
                         _context.EspecieTerrarios.Add(it);
                     }
@@ -127,7 +127,7 @@ namespace Business.Services
 
                 foreach (EspecieTerrario et in especiesDatabase)
                 {
-                    EspecieTerrario esp = especieTerrarios.FirstOrDefault(x => x.Idespecie == et.Idespecie);
+                    EspecieTerrario esp = especieTerrarios.FirstOrDefault(x => x.Idespecie == et.Idespecie && x.Idterrario == et.Idterrario);
 
                     if (esp == null)// bd si, lista no : borrar bd
                     {
