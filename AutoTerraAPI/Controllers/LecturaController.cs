@@ -48,6 +48,15 @@ namespace AutoTerraAPI.Controllers
             return Ok(DatoVM);
         }
 
+        [HttpGet("lecturas/terrario/lista/{id}")]
+        public async Task<IActionResult> GetListaLecturasTerrario(long id)
+        {
+            ICollection<LecturaDTO> lecturaDTOs = await _datoService.GetListaLecturasTerrario(id);
+            ICollection<LecturaVM> lecturaVMs = _mapper.Map<ICollection<LecturaVM>>(lecturaDTOs);
+            
+            return Ok(lecturaVMs);
+        }
+
         [HttpPost("datos")]
         public async Task<IActionResult> Create(LecturaVM DatoVM)
         {

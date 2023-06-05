@@ -11,5 +11,6 @@ namespace Business.Interfaces
         void Delete(int id);
 
         Task<LecturaDTO> GetLecturaActual(long id);
+        Task<ICollection<LecturaDTO>> GetListaLecturasTerrario(long idTerrario);
     }
 }

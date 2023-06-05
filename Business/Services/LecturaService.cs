@@ -100,6 +100,19 @@ namespace Business.Services
             }
         }
 
+        public async Task<ICollection<LecturaDTO>> GetListaLecturasTerrario(long idTerrario)
+        {
+            try
+            {
+                List<Lectura> listaLecturas = _context.Lecturas.OrderBy(x => x.Fecha).Where(x => x.Idterrario == idTerrario).ToList();
+                return _mapper.Map<ICollection<LecturaDTO>>(listaLecturas);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public async void Update(int id, LecturaDTO DatoDTO)
         {
             try
